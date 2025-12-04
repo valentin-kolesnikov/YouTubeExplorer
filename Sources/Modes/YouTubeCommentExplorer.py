@@ -1,4 +1,6 @@
-from InputData.CommentExplorer import youtube_id_finder, youtube_filters
+from Patterns.EnteringURL import youtube_id_finder
+
+from InputData.CommentExplorer import youtube_filters
 
 from FirstFunctions.collecting_info import collect_comments, channel_name
 
