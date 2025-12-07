@@ -4,7 +4,7 @@ from ThirdFunctions.collecting_info import collect_channel_info, search_channel_
 
 from ThirdFunctions.output import output_channel_info
 
-from Patterns.SearchingSecondThird import search_engine
+from Patterns.Search_Engine import search_engine
 
 from Patterns.asyncRYD import ryd
 

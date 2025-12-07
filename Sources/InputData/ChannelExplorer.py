@@ -24,8 +24,7 @@ def get_info():
 
 
 def get_answer():
-    get_answers = input("\nDo you need to search for videos from the channel?(y/n): ")
-    get_answers.lower()
+    get_answers = input("\nDo you need to search for videos from the channel?(y/n): ").lower()
 
     while True:
         if get_answers == "y":
@@ -35,8 +34,7 @@ def get_answer():
             break
 
         else:
-            get_answers = input("\nEnter again: ")
-            get_answers.lower()
+            get_answers = input("\nEnter again: ").lower()
 
 
     return get_answers

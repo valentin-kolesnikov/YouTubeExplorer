@@ -18,7 +18,7 @@ def youtube_filters():
     search_terms = set(search_terms)
 
 
-    which_order = input("\n1. By relevance\n2. By time\n\nEnter the choice: ")
+    which_order = input("\n1. By relevance\n2. By time\n\nEnter the number: ")
 
     while True:
         if which_order == "1":
