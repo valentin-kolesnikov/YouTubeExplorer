@@ -1,6 +1,8 @@
 from InputData.VideoExplorer import searching_for_videos
 
-from SecondFunctions.collecting_info import collect_searches, collect_stats
+from SecondFunctions.collecting_info import collect_searches
+
+from Patterns.collectingStats import collect_stats
 
 from SecondFunctions.output import output_videos
 

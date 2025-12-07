@@ -23,6 +23,7 @@ dist/
 *.txt
 *.csv
 *.bin
+*.ini
 
 # My Files
 *DT.py
