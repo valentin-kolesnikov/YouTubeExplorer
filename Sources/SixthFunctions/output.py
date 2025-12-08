@@ -19,9 +19,10 @@ def output_info(results, statrequest, dict_channel):
 
         
         print(
-            f"{title}\n"
-            f"https://www.youtube.com/watch?v={video_id}\n"
+            f"Title: {title}\n"
+            f"Video Link: https://www.youtube.com/watch?v={video_id}\n"
             f"{views} views; {likes} likes; {dislikes} dislikes; {comments} comments\n"
-            f"{formatted_date}\n"
-            f"{dict_channel.get('Name', 'N/A')}\n"
+            f"Description of the video:\n=================================\n{dict_channel["description"]}\n=================================\n"
+            f"Date: {formatted_date}\n"
+            f"Channel: {dict_channel.get('Name', 'N/A')}\n"
             f"Channel Link: https://www.youtube.com/channel/{dict_channel["Id"]}\n")

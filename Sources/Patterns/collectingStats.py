@@ -21,9 +21,11 @@ def collect_stats(youtube, video_ids):
         for stat in statrequest["items"]:
             channelName = stat["snippet"]["channelTitle"]
             channelId = stat["snippet"]["channelId"]
+            description = stat["snippet"]["description"]
 
         dict_channels["Name"] = channelName
         dict_channels["Id"] = channelId
+        dict_channels["description"] = description
         
         return statrequest, dict_channels, False
     
@@ -44,4 +46,4 @@ def collect_stats(youtube, video_ids):
 
         WinError(exc)
 
-        return {}, {}, True           #перезагрузка программы
+        return {}, {}, True
