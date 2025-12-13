@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 
-def output_videos(results, statrequest, dict_channels):
+def output_videos(results, statrequest):
     number = 0
     for item in statrequest["items"]:
         title = item["snippet"]["title"]
@@ -18,8 +18,8 @@ def output_videos(results, statrequest, dict_channels):
         views = results.get(video_id, {}).get("viewCount", "No")
         comments = item["statistics"].get("commentCount", "No")
 
-        channel_id = item["snippet"]["channelId"]
-        channel_info = dict_channels.get(channel_id, {})
+        channelName = item["snippet"]["channelTitle"]
+        channelId = item["snippet"]["channelId"]
 
         number += 1
 
@@ -29,5 +29,5 @@ def output_videos(results, statrequest, dict_channels):
             f"https://www.youtube.com/watch?v={video_id}\n"
             f"{views} views; {likes} likes; {dislikes} dislikes; {comments} comments\n"
             f"{formatted_date}\n"
-            f"{channel_info.get('title', 'N/A')}\n"
-            f"Channel Link: https://www.youtube.com/channel/{channel_id}\n")
+            f"{channelName}\n"
+            f"Channel Link: https://www.youtube.com/channel/{channelId}\n")

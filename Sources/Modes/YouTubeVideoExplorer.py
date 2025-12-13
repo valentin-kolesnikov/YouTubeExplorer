@@ -21,20 +21,20 @@ import asyncio
 def launcherVideos(youtube):
     keywords, region, ageAfter, ageBefore, duration, maximum, which_order, dimension = searching_for_videos()
     
-    video_ids, channel_ids, exc = collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, maximum, which_order, dimension)
+    video_ids, exc = collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, maximum, which_order, dimension)
     if exc:
         os.system('cls')
         return
 
     results = asyncio.run(ryd(video_ids))
 
-    statrequest, dict_channels, exc = collect_stats(youtube, video_ids, channel_ids)
+    statrequest, exc = collect_stats(youtube, video_ids)
     if exc:
         os.system('cls')
         return
     
     os.system('cls')
 
-    output_videos(results, statrequest, dict_channels)
+    output_videos(results, statrequest)
 
     input("Press Enter to return...")

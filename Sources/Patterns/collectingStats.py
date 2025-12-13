@@ -13,37 +13,27 @@ def collect_stats(youtube, video_ids):
     try:
         statrequest = youtube.videos().list(
             part="snippet,statistics",
-            id=video_ids
+            id=",".join(video_ids)
         ).execute()
         
-        dict_channels = {}
-        
-        for stat in statrequest["items"]:
-            channelName = stat["snippet"]["channelTitle"]
-            channelId = stat["snippet"]["channelId"]
-            description = stat["snippet"]["description"]
-
-        dict_channels["Name"] = channelName
-        dict_channels["Id"] = channelId
-        dict_channels["description"] = description
-        
-        return statrequest, dict_channels, False
+        return statrequest, False
+    
     
     except HttpError as exc:
 
         http_error(exc)
 
-        return {}, {}, True
+        return {}, True
     
 
     except Exception:
         print("Probably, YouTube has problems with submitted objects")
 
-        return {}, {}, True
+        return {}, True
         
 
     except OSError as exc:
 
         WinError(exc)
 
-        return {}, {}, True
+        return {}, True

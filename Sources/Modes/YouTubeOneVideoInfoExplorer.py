@@ -13,7 +13,7 @@ import os
 def launcherInfo(youtube):
     video_id = youtube_id_finder()
     
-    statrequest, dict_channels, exc = collect_stats(youtube, video_id)
+    statrequest, exc = collect_stats(youtube, [video_id])
     if exc:
         os.system('cls')
         return
@@ -22,6 +22,6 @@ def launcherInfo(youtube):
 
     os.system('cls')
 
-    output_info(results, statrequest, dict_channels)
+    output_info(results, statrequest)
 
     input("Press Enter to return...")

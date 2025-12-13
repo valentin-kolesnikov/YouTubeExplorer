@@ -22,29 +22,23 @@ def collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, m
         ).execute()
 
         video_ids = []
-        channel_ids = []
 
         for item in request["items"]:
             videos = item["id"]["videoId"]
             video_ids.append(videos)
 
-            channels = item["snippet"]["channelId"]
-            channel_ids.append(channels)
-
-        return video_ids, channel_ids, False
+        return video_ids, False
     
     
     except HttpError as exc:
         
         http_error(exc)
         
-        return {}, {}, True
+        return {}, True
     
     
     except OSError as exc:
 
         WinError(exc)
 
-        return {}, {}, True
-
-
+        return {}, True
