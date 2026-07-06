@@ -7,8 +7,9 @@ from Modes.YouTubeOneVideoExplorer import launcherInfo
 from Modes.YouTubeExplorerLicense import launcherABOUT, launcherLICENSE
 from Modes.YouTubeASCIIExplorer import launcherASCII
 from Modes.YouTubeHistoryExplorer import launcherHistory
+from Modes.KeysAPI import launcherKey
 
-from Starter.KeyExplorer import youtube_api_key, window_title, launcherKey
+from Starter.KeyExplorer import youtube_api_key, window_title
 from Starter.QuotaExplorer import test_quota
 from Starter.OAuth2 import youtube_OAuth2
 
