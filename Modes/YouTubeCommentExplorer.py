@@ -32,7 +32,7 @@ def launcherComments(youtube):
 
     comments, exc = collect_comments(video_id, search_terms, which_order, youtube)
     if exc:
-        history.add_session("ERROR", error=str(exc))
+        history.add_session("ERROR", reason=comments, error=str(exc))
         history.save()
 
         print("\033[H\033[J", end="")
@@ -41,7 +41,7 @@ def launcherComments(youtube):
 
     channel, exc = channel_name(video_id, youtube)
     if exc:
-        history.add_session("ERROR", error=str(exc))
+        history.add_session("ERROR", reason=channel, error=str(exc))
         history.save()
 
         print("\033[H\033[J", end="")

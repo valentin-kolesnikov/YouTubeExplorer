@@ -1,32 +1,65 @@
+from json import loads
+
+class PatternError:
+    def __init__(self):
+        self.error = None
+
+    def pattern_exception(self):
+        print("Probably, YouTube has problems with submitted objects")
+
+        return "Unexpected error occurred" #Remember! It is for logs. You need add more the next time
+
+
 def http_error(exc):
     status = exc.resp.status
 
-    if status == 400:
-        print(f"\n\u001b[31mError {status}: Bad Request. There is some issues with Google requests.\u001b[0m")
+    match status:
+        case 400:
+            issue = "Bad Request. There are some issues with Google requests."
 
-    elif status == 403:
-        print(f"\n\u001b[31mError {status}: Forbidden. Probably, you exceeded your YouTube API quota.\u001b[0m")
+        case 403:
+            error_json = loads(exc.content.decode("utf-8"))
+            reason = error_json["error"]["errors"][0]["reason"]
 
-    elif status == 404:
-        print(f"\n\u001b[31mError {status}: Not Found. Probably, the non-existent video was found.\u001b[0m")
+            if reason == "commentsDisabled":
+                issue = "Forbidden. Comments of the video are disabled."
+            else:
+                issue = "Forbidden. Probably, you exceeded your YouTube API quota."
 
-    else:
-        print(f"\n\u001b[31mUnexpected HTTP error: {status}\u001b[0m")
+        case 404:
+            issue = "Not Found. Probably, the requested video does not exist."
+
+        case _:
+            issue = "Unexpected HTTP error"
+
+    print(f"\n\u001b[31mError {status}: {issue}\u001b[0m")
     
+
     input("\nPress Enter to return...")
 
+    return issue
+
+
+
+
+
+
 def WinError(exc):
-    
-    if exc.errno == 10054:
-        print("\n\u001b[31mConnection was forcibly closed by the remote host (WinError 10054)\u001b[0m")
 
-    elif exc.errno == 11001:
-        print("\n\u001b[31mNo Internet connection available (WinError 11001)\u001b[0m")
+    match exc.errno:
+        case 10054:
+            issue = "Connection was forcibly closed by the remote host (WinError 10054)"
 
-    else:
-        print("\n\u001b[31mInternet connection is probably unavailable.\u001b[0m")
+        case 11001:
+            issue = "No Internet connection available (WinError 11001)"
 
-    exit_continue = input("\n\u001b[31m1. Retry connection\n2. Exit\n\nYour choice:\u001b[0m ")
+        case _:
+            issue = "Internet connection is probably unavailable."
+
+    print(f"\n\u001b[31m{issue}\u001b[0m")
+
+
+    exit_continue = input("\n\u001b[31m1. Retry connection\n2. Exit\n\nYour choice:\u001b[0m")
     
     while True:
         if exit_continue == "1":
@@ -36,4 +69,4 @@ def WinError(exc):
             exit(1)
 
         else:
-            exit_continue = input("\n\u001b[31mEnter again:\u001b[0m ")
+            exit_continue = input("\n\u001b[31mEnter again:\u001b[0m")

@@ -10,7 +10,8 @@ COMMENT_NAMES ={
     "error": "Error:",
     "amount_comments": "Total:",
     "file_path": "DOCX:",
-    "counts": "Matches:"
+    "counts": "Matches:",
+    "reason": "Reason:"
 }
 
 
