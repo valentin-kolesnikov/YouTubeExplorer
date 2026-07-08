@@ -1,6 +1,6 @@
 from googleapiclient.errors import HttpError
 
-from Patterns.errors import http_error, WinError
+from Patterns.errors import PatternError, http_error, WinError
 
 from datetime import datetime
 
@@ -50,9 +50,9 @@ def collect_channel_info(youtube, for_id, for_handle):
 
         except HttpError as exc:
 
-            http_error(exc)
+            issue = http_error(exc)
 
-            return {}, {}, True
+            return issue, {}, True
         
         
         except OSError as exc:
@@ -60,20 +60,22 @@ def collect_channel_info(youtube, for_id, for_handle):
             if WinError(exc):
                 continue
 
-            return {}, {}, True
+            return "OSError occurred", {}, True
         
         
         except Exception:
 
             if ValueError:
-                print("\nThe channel is not found.")
+                issue = "The channel is not found."
 
             else:
-                print("\nUnknown problem.")
+                issue = "Unknown problem."
+
+            print(f"\n{issue}")
 
             input("\nPress Enter to return...")
 
-            return {}, {}, True
+            return issue, {}, True
     
 
     
@@ -121,9 +123,9 @@ def search_channel_videos(youtube, snistics, keywords, ageAfter, ageBefore, dura
 
         except HttpError as exc:
             
-            http_error(exc)
+            issue = http_error(exc)
             
-            return {}, True
+            return issue, True
         
 
         except OSError as exc:
@@ -131,7 +133,7 @@ def search_channel_videos(youtube, snistics, keywords, ageAfter, ageBefore, dura
             if WinError(exc):
                 continue
 
-            return {}, True
+            return "OSError occurred", True
 
     
 
@@ -155,9 +157,9 @@ def collect_popular_videos(youtube, uploads_videos):
 
         except HttpError as exc:
 
-            http_error(exc)
+            issue = http_error(exc)
 
-            return {}, True
+            return issue, True
         
 
         except OSError as exc:
@@ -165,10 +167,7 @@ def collect_popular_videos(youtube, uploads_videos):
             if WinError(exc):
                 continue
 
-            return {}, True
+            return "OSError occurred", True
         
         except Exception:
-            
-            print("Probably, YouTube has problems with submitted objects")
-
-            return {}, True
+            return PatternError().pattern_exception(), True
