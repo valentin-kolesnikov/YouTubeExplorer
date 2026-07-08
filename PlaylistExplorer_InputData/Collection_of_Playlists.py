@@ -6,6 +6,7 @@ from ForthFunctions.output import output_playlists
 
 from Patterns.Search_Engine import search_engine
 
+from Patterns.save_history import log, log_error, clear
 
 
 
@@ -15,66 +16,72 @@ from Patterns.Search_Engine import search_engine
 
 
 
-def videos_from_playlist(youtube):
-    go_to_another_part = input("\n\nDo you want to analyze the certain playlist? (y/n): ")
 
-    if go_to_another_part.lower() == "y":
-        print("")
-        videos_of_playlists(youtube)
+def collection_of_playlists(history, youtube, exc_OAuth2):
+    
+    print("1. Other's playlists")
 
-    elif go_to_another_part.lower() == "n":
-        return
+    if not exc_OAuth2:
+        print("2. Your playlists")
+    print("0. Go back to the previous menu")
 
+    search_playlist = input("\nChoose the number: ")
 
-
-def collection_of_playlists(youtube, exc_OAuth2):
     while True:
-        print("1. Other's playlists")
-
-        if not exc_OAuth2:
-            print("2. Your playlists")
-        print("0. Go back to the previous menu")
-
-        search_playlist = input("\nChoose the number: ")
-
         if search_playlist == "1":
+
+            log(history, "COLLECT_OTHER_PLAYLISTS")
             
             keywords, ageAfter, ageBefore, _, maximum, which_order, _ = search_engine(playlist_enabled=True)
+            log(history, "ENTER_FILTERS", keywords=list(keywords), ageAfter=ageAfter, 
+                ageBefore=ageBefore, maximum=maximum, which_order=which_order)
+            
 
             playlist_ids, exc = collect_other_playlists(youtube, keywords, ageAfter, ageBefore, maximum, which_order)
             if exc:
-                print("\033[H\033[J", end="")
+                log_error(history, playlist_ids, exc)
+                clear()
                 return
+            
             
             statrequest, exc = collect_playlist_details(youtube, playlist_ids)
             if exc:
-                print("\033[H\033[J", end="")
+                log_error(history, statrequest, exc)
+                clear()
                 return
-
-            print("\033[H\033[J", end="")
+            
+            log(history, "COLLECT_PLAYLISTS", status="SUCCESS")
+            clear()
 
             output_playlists(statrequest)
-            
-            videos_from_playlist(youtube)
+            log(history, "OUTPUT_PLAYLISTS")
+
+            videos_from_playlist(history, youtube)
             return
         
 
         elif search_playlist == "2" and not exc_OAuth2:
+            log(history, "COLLECT_YOUR_PLAYLISTS")
+
             statrequest, exc = collect_your_playlists(youtube)
             if exc:
-                print("\033[H\033[J", end="")
+                log_error(history, statrequest, exc)
+                clear()
                 return
 
-            print("\033[H\033[J", end="")
+            log(history, "COLLECT_PLAYLISTS", status="SUCCESS")
+            clear()
 
             output_playlists(statrequest)
+            log(history, "OUTPUT_PLAYLISTS")
 
-            videos_from_playlist(youtube)
+            videos_from_playlist(history, youtube)
             return
         
 
         elif search_playlist == "0":
-            print("\033[H\033[J", end="")
+            log(history, "BACK_TO_PREVIOUS_MENU")
+            clear()
             return
 
     
@@ -82,3 +89,16 @@ def collection_of_playlists(youtube, exc_OAuth2):
             search_playlist = input("\nEnter again: ")
 
 
+
+def videos_from_playlist(history, youtube):
+    go_to_another_part = input("\n\nDo you want to analyze the certain playlist? (y/n): ")
+
+    if go_to_another_part.lower() == "y":
+        print("")
+        log(history, "COLLECT_VIDEOS_OF_PLAYLISTS")
+
+        videos_of_playlists(history, youtube)
+
+    elif go_to_another_part.lower() == "n":
+        log(history, "EXIT")
+        return

@@ -1,6 +1,6 @@
 from googleapiclient.errors import HttpError
 
-from Patterns.errors import http_error, WinError
+from Patterns.errors import PatternError, http_error, WinError
 
 
 
@@ -66,24 +66,22 @@ def collect_playlist_details(youtube, playlist_ids):
 
             return statrequest, False
         
+        
         except HttpError as exc:
 
-            http_error(exc)
+            issue = http_error(exc)
 
-            return {}, True
+            return issue, True
         
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return {}, True
+            return "OSError occurred", True
         
         except Exception:
-            
-            print("Probably, YouTube has problems with submitted objects")
-
-            return {}, True
+            return PatternError().pattern_exception(), True
     
 
 
@@ -114,22 +112,19 @@ def collect_videos_of_playlist(youtube, playlist_URL):
 
         except HttpError as exc:
 
-            http_error(exc)
+            issue = http_error(exc)
 
-            return {}, True
+            return issue, True
         
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return {}, True
+            return "OSError occurred", True
         
         except Exception:
-            
-            print("Probably, YouTube has problems with submitted objects")
-
-            return {}, True
+            return PatternError().pattern_exception(), True
 
 
 
@@ -161,19 +156,16 @@ def collect_your_playlists(youtube):
 
         except HttpError as exc:
 
-            http_error(exc)
+            issue = http_error(exc)
 
-            return {}, True
+            return issue, True
         
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return {}, True
+            return "OSError occurred", True
         
         except Exception:
-            
-            print("Probably, YouTube has problems with submitted objects")
-
-            return {}, True
+            return PatternError().pattern_exception(), True

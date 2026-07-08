@@ -1,31 +1,41 @@
 from PlaylistExplorer_InputData.Collection_of_Playlists import collection_of_playlists
 from PlaylistExplorer_InputData.Videos_of_Playlists import videos_of_playlists
 
+from Patterns.HistoryLogs import HistorySessions
+
+from Patterns.save_history import log, clear
+
 
 
 
 
 def launcherPlaylists(youtube, exc_OAuth2):
-    question = input(
-        "1. Collecting playlists\n" \
-        "2. Collecting videos from the playlist\n" \
-        "0. Go back to the start menu\n\n" \
-        "Choose the number: "
-        )
-    
+    history = HistorySessions("Playlist")
+
     while True:
-        if question == "0":
-            return
+        question = input(
+            "1. Collecting playlists\n" \
+            "2. Collecting videos from the playlist\n" \
+            "0. Go back to the start menu\n\n" \
+            "Choose the number: "
+            )
         
-        elif question == "1":
-            print("\033[H\033[J", end="")
-            collection_of_playlists(youtube, exc_OAuth2)
-            break
+        while True:
+            if question == "0":
+                log(history, "EXIT")
+                return
+            
+            elif question == "1":
+                clear()
+                collection_of_playlists(history, youtube, exc_OAuth2)
+                log(history, "COLLECT_PLAYLISTS")
+                break
 
-        elif question == "2":
-            print("\033[H\033[J", end="")
-            videos_of_playlists(youtube)
-            break
+            elif question == "2":
+                clear()
+                videos_of_playlists(history, youtube)
+                log(history, "COLLECT_VIDEOS")
+                break
 
-        else:
-            question = input("\nEnter again: ")
+            else:
+                question = input("\nEnter again: ")
