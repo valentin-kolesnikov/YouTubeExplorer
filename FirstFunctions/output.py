@@ -57,7 +57,7 @@ def save_docx(comments, channel, counts, amount_comments, video_id):
             app_folder = Path(__file__).resolve().parents[1]
 
 
-        youtube_folder = Path(app_folder, "YouTubeComments")
+        youtube_folder = Path(app_folder, "Comments_in_DOCX")
         youtube_folder.mkdir(parents=True, exist_ok=True)
 
         full_path = Path(youtube_folder, f"{video_id}.docx")
