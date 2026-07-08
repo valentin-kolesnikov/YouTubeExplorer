@@ -28,39 +28,25 @@ def menu_page1(youtube, exc_OAuth2, current_page):
         "0. Exit\n\n" \
         "Enter the number (press Enter for next page): "
     )
-    while True:
-        if questionist1 == "1":
-            clear()
-            launcherComments(youtube)
-            break
-        elif questionist1 == "2":
-            clear()
-            launcherVideos(youtube)
-            break
-        elif questionist1 == "3":
-            clear()
-            launcherChannels(youtube)
-            break
-        elif questionist1 == "4":
-            clear()
-            launcherPlaylists(youtube, exc_OAuth2)
-            break
-        elif questionist1 == "5":
-            clear()
-            launcherSubtitles()
-            break
-        elif questionist1 == "6":
-            clear()
-            launcherInfo(youtube)
-            break
 
-        elif questionist1 == "":
-            current_page = 2
-            break
-        elif questionist1 == "0":
-            exit(0)
-        else:
-            break
+    page1 = {
+        "1": lambda: launcherComments(youtube),
+        "2": lambda: launcherVideos(youtube),
+        "3": lambda: launcherChannels(youtube),
+        "4": lambda: launcherPlaylists(youtube, exc_OAuth2),
+        "5": lambda: launcherSubtitles(),
+        "6": lambda:  launcherInfo(youtube)
+    }
+
+    if questionist1 == "":
+        current_page = 2
+
+    elif questionist1 == "0":
+        exit(0)
+
+    elif questionist1 in page1:
+        clear()
+        page1[questionist1]()
 
     return current_page
 
@@ -79,35 +65,23 @@ def menu_page2(exc_OAuth2, current_page):
         "0. Exit\n\n" \
         "Enter the number (press Enter for prev page): "
     )
-    
-    while True:
-        if questionist2 == "1":
-            clear()
-            launcherKey(exc_OAuth2)
-            break
-        elif questionist2 == "2":
-            clear()
-            launcherHistory()
-            break
-        elif questionist2 == "3":
-            clear()
-            launcherASCII()
-            break
-        elif questionist2 == "4":
-            clear()
-            launcherLICENSE()
-            break
-        elif questionist2 == "5":
-            clear()
-            launcherABOUT()
-            break
-            
-        elif questionist2 == "":
-            current_page = 1
-            break
-        elif questionist2 == "0":
-            exit(0)
-        else:
-            break
+
+    page2 = {
+        "1": lambda: launcherKey(exc_OAuth2),
+        "2": lambda: launcherHistory(),
+        "3": lambda: launcherASCII(),
+        "4": lambda: launcherLICENSE(),
+        "5": lambda: launcherABOUT()
+    }
+
+    if questionist2 == "":
+        current_page = 1
+        
+    elif questionist2 == "0":
+        exit(0)
+
+    elif questionist2 in page2:
+        clear()
+        page2[questionist2]()
 
     return current_page
