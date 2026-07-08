@@ -19,11 +19,11 @@ COMMENT_NAMES ={
     "maximum": "Number of resources:",
     "dimension": "Dimension:",
     "get_answers": "Video search answer:",
-
+    "channel_link": "Channel:",
+    "playlist_link": "Playlist:",
 }
 
 COMMENT_NAMES["keywords"] = COMMENT_NAMES["search_terms"]
-COMMENT_NAMES["channel_link"] = COMMENT_NAMES["video_link"]
 
 
 
