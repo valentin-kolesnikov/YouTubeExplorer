@@ -1,3 +1,5 @@
+from Patterns.save_history import log
+
 from youtube_transcript_api._errors import (NoTranscriptFound, 
                                              VideoUnavailable, 
                                              TranslationLanguageNotAvailable
@@ -5,7 +7,7 @@ from youtube_transcript_api._errors import (NoTranscriptFound,
 
 
 
-def transcript_fetcher(video_id_list, languages_list, manually_generated):
+def transcript_fetcher(history, video_id_list, languages_list, manually_generated):
     try:
         if manually_generated == "1":
             transcript_subtitles = video_id_list.find_manually_created_transcript(languages_list)
@@ -15,7 +17,10 @@ def transcript_fetcher(video_id_list, languages_list, manually_generated):
 
         return transcript_subtitles, False
     
+    
     except NoTranscriptFound:
+        log(history, "NO_TRANSCRIPT_FOUND_FIRST_ATTEMPT")
+
         try:
             if manually_generated == "1":
                 generated_forced = input("\nThere is no manually created transcript. Do you try to find a generated transcript?\n\n" \
@@ -28,6 +33,7 @@ def transcript_fetcher(video_id_list, languages_list, manually_generated):
                         break
 
                     elif generated_forced == "2":
+                        log(history, "EXIT", reason="User declined to search for generated transcript")
                         return {}, True
                     
                     else:
@@ -46,6 +52,7 @@ def transcript_fetcher(video_id_list, languages_list, manually_generated):
                         break
 
                     elif manually_forced == "2":
+                        log(history, "EXIT", reason="User declined to search for manually created transcript")
                         return {}, True
                     
                     else:
@@ -58,6 +65,7 @@ def transcript_fetcher(video_id_list, languages_list, manually_generated):
         except NoTranscriptFound:
 
             input("\n\u001b[31mNo transcripts were found\u001b[0m\n\nPress Enter to return...")
+            log(history, "NO_TRANSCRIPT_FOUND_LAST_ATTEMPT")
 
             return {}, True
     
@@ -65,17 +73,20 @@ def transcript_fetcher(video_id_list, languages_list, manually_generated):
     except VideoUnavailable:
 
         input("\u001b[31mThe video is unavailable\u001b[0m\n\nPress Enter to return...")
+        log(history, "VIDEO_UNAVAILABLE")
 
         return {}, True
     
     except TranslationLanguageNotAvailable:
 
         input("\u001b[31mThe translation language is not available\u001b[0m\n\nPress Enter to return...")
+        log(history, "TRANSLATION_LANGUAGE_NOT_AVAILABLE")
 
         return {}, True
     
     except Exception:
         
-        print("Probably, YouTube has problems with submitted objects")
+        print("Probably, the service has problems with submitted objects")
+        log(history, "UNEXPECTED_ERROR")
 
         return {}, True

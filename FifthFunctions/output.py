@@ -49,7 +49,11 @@ def save_docx(transcript_subtitles, available_lang, full_text):
             break
         choice = input("\nEnter again correctly (y/n): ").lower()
 
-    if choice == "y":
+    if choice == "n":
+            return choice, None
+
+
+    elif choice == "y":
         if getattr(sys, 'frozen', False):
             exe_path = Path(sys.executable).resolve()
             app_folder = exe_path.parents[1]
@@ -58,7 +62,7 @@ def save_docx(transcript_subtitles, available_lang, full_text):
             app_folder = Path(__file__).resolve().parents[1]
 
 
-        youtube_folder = Path(app_folder, "YouTubeTranscripts")
+        youtube_folder = Path(app_folder, "Transcripts_in_DOCX")
         youtube_folder.mkdir(parents=True, exist_ok=True)
 
         full_path = Path(youtube_folder, f"{transcript_subtitles.video_id}.docx")
@@ -81,6 +85,6 @@ def save_docx(transcript_subtitles, available_lang, full_text):
         doc.add_paragraph(full_text)
 
         doc.save(full_path)
-
         print(f'\nFile "{full_path}" saved successfully!')
-        return
+
+        return choice, full_path
