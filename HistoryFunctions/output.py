@@ -21,7 +21,8 @@ COMMENT_NAMES ={
     "get_answers": "Video search answer:",
     "channel_link": "Channel:",
     "playlist_link": "Playlist:",
-    "view": "Method:"
+    "view": "Method:",
+    "languages": "Languages:"
 }
 
 COMMENT_NAMES["keywords"] = COMMENT_NAMES["search_terms"]
