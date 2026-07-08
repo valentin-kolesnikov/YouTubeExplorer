@@ -1,13 +1,10 @@
 from json import loads
 
 class PatternError:
-    def __init__(self):
-        self.error = None
-
-    def pattern_exception(self):
+    def pattern_exception():
         print("Probably, YouTube has problems with submitted objects")
 
-        return "Unexpected error occurred" #Remember! It is for logs. You need add more the next time
+        return "Unexpected error occurred" 
 
 
 def http_error(exc):
