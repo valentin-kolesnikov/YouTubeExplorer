@@ -7,6 +7,8 @@
   ![Python](https://img.shields.io/badge/Python-3.14-yellowblue)
 </div>
 
+![GIF](Image/GIF.gif)
+
 ## [English](README.md) | Русский
 
 **YouTube Explorer** — это консольный инструмент на Python для программного исследования контента YouTube с использованием **YouTube Data API v3** (с поддержкой OAuth 2.0), **Return YouTube Dislike API** и **YouTube Transcript API**

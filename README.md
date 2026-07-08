@@ -8,6 +8,8 @@
   ![Python](https://img.shields.io/badge/Python-3.14-yellowblue)
 </div>
 
+![GIF](Image/GIF.gif)
+
 ## English | [Русский](README_RU.md)
 
 **YouTube Explorer** is a console-based Python tool for programmatic exploration of YouTube content using **YouTube Data API v3** (with OAuth 2.0 support), **Return YouTube Dislike API**, and **YouTube Transcript API**
