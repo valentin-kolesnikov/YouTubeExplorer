@@ -41,4 +41,6 @@ def videos_of_playlists(history, youtube):
     log(history, "OUTPUT_VIDEOS")
 
     input("\nPress Enter to return...")
+    log(history, "EXIT")
+    
     return

@@ -27,14 +27,16 @@ def launcherPlaylists(youtube, exc_OAuth2):
             
             elif question == "1":
                 clear()
-                collection_of_playlists(history, youtube, exc_OAuth2)
                 log(history, "COLLECT_PLAYLISTS")
+
+                collection_of_playlists(history, youtube, exc_OAuth2)
                 break
 
             elif question == "2":
                 clear()
-                videos_of_playlists(history, youtube)
                 log(history, "COLLECT_VIDEOS")
+
+                videos_of_playlists(history, youtube)
                 break
 
             else:
