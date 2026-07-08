@@ -11,8 +11,19 @@ COMMENT_NAMES ={
     "amount_comments": "Total:",
     "file_path": "DOCX:",
     "counts": "Matches:",
-    "reason": "Reason:"
+    "reason": "Reason:",
+    "region": "Region:",
+    "ageAfter": "After date:",
+    "ageBefore": "Before date:",    
+    "duration": "Duration:",
+    "maximum": "Number of resources:",
+    "dimension": "Dimension:",
+    "get_answers": "Video search answer:",
+
 }
+
+COMMENT_NAMES["keywords"] = COMMENT_NAMES["search_terms"]
+COMMENT_NAMES["channel_link"] = COMMENT_NAMES["video_link"]
 
 
 
