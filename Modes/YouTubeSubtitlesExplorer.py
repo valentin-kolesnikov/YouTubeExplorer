@@ -6,7 +6,7 @@ from Patterns.EnteringURL import youtube_id_finder
 
 from Patterns.HistoryLogs import HistorySessions
 
-from Patterns.save_history import log, log_error, clear
+from Patterns.save_history import log, clear
 
 from Patterns.errors import WinError
 
