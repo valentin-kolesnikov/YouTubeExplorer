@@ -1,6 +1,6 @@
 from googleapiclient.errors import HttpError
 
-from Patterns.errors import http_error, WinError
+from Patterns.errors import PatternError, http_error, WinError
 
 
 
@@ -48,9 +48,9 @@ def collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, m
         
         except HttpError as exc:
             
-            http_error(exc)
+            issue = http_error(exc)
             
-            return {}, True
+            return issue, True
         
         
         except OSError as exc:
@@ -58,10 +58,7 @@ def collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, m
             if WinError(exc):
                 continue
 
-            return {}, True
+            return "OSError occurred", True
         
         except Exception:
-            
-            print("Probably, YouTube has problems with submitted objects")
-
-            return {}, True
+            return PatternError().pattern_exception(), True

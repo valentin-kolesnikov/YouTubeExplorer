@@ -1,6 +1,6 @@
 from googleapiclient.errors import HttpError
 
-from Patterns.errors import http_error, WinError
+from Patterns.errors import PatternError, http_error, WinError
 
 
 
@@ -27,20 +27,18 @@ def collect_stats(youtube, video_ids):
         
         
         except HttpError as exc:
-
-            http_error(exc)
-
-            return {}, True
+                    
+            issue = http_error(exc)
+            
+            return issue, True
+        
         
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return {}, True
+            return "OSError occurred", True
         
         except Exception:
-            
-            print("Probably, YouTube has problems with submitted objects")
-
-            return {}, True
+            return PatternError().pattern_exception(), True
