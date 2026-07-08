@@ -25,7 +25,7 @@ class HistorySessions:
         else:
             app_folder = Path(__file__).resolve().parents[1]
 
-        self.folder = Path(app_folder, "YouTubeHistory",
+        self.folder = Path(app_folder, "HistoryLogs",
                             now.strftime("%Y"),
                             now.strftime("%m"),
                             now.strftime("%d"))

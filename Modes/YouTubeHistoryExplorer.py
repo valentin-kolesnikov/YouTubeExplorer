@@ -18,11 +18,11 @@ def launcherHistory():
     try:
         if getattr(sys, "frozen", False):
             app_folder = Path(sys.executable).resolve().parents[1]
-            json_path = app_folder / "YouTubeHistory"
+            json_path = app_folder / "HistoryLogs"
 
         else:
             app_folder = Path(__file__).resolve().parents[1]
-            json_path = app_folder / "YouTubeHistory"
+            json_path = app_folder / "HistoryLogs"
 
         while True:
         
@@ -46,7 +46,7 @@ def launcherHistory():
             number = input("\nEnter the number of the year (Press Enter to return): ")
 
             if number == "":
-                if json_path.name == "YouTubeHistory":
+                if json_path.name == "HistoryLogs":
                     raise Exception
 
                 json_path = json_path.parent
