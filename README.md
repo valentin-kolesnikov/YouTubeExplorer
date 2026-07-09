@@ -23,13 +23,19 @@
 > All materials used for the app are stored in the public repository.  
 > As a developer, I have no desire to harm other users. You can always contact me via email for such issues.
 
-YouTube Explorer is designed for:
+## Why YouTube Explorer?
 
-- Working within YouTube API quota limits
-- Retrieving and filtering comments
-- Searching videos and retrieving playlists
-- Extracting metadata
-- Collecting subtitles
+| Feature | YouTube | YouTube Explorer |
+|----------|:-------:|:----------------:|
+| Search comments | ❌ | ✅ |
+| Saving comments | ❌ | ✅ |
+| Export to DOCX | ❌ | ✅ |
+| Search videos | ✅ | ✅ |
+| Return YouTube Dislike | ❌ | ✅ |
+| Channel search | ⚠️ Limited | ✅ |
+| Playlist search | ⚠️ Limited | ✅ |
+| Viewing the transcript | ❌ | ✅ |
+| Download transcripts | ❌ | ✅ |
 
 # 🗒️Table of Contents
 
@@ -73,11 +79,13 @@ Basic familiarity with command-line usage is recommended.
 ## Releases
 
 Windows:
+
 1. `Releases` → `YouTubeExplorer.zip`
 2. Extract the `.zip` folder
 3. `bin` → open `YouTubeExplorer.exe`
 
 Ubuntu-like:
+
 1. **Releases** → `YouTubeExplorer.tar.gz`
 2. Extract the `.tar.gz` folder
 3. YouTubeExplorer.dist → Copy `YouTubeExplorer.bin` → Paste it into the terminal and press Enter, or run it via command: `./YouTubeExplorer.bin`
