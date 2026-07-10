@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 
-def output_videos(results, statrequest, one_video_info):
+def output_videos(results, statrequest, one_video_info=False):
     number = 0
     for item in statrequest["items"]:
         title = item["snippet"]["title"]

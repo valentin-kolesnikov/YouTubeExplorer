@@ -52,7 +52,7 @@ def launcherVideos(youtube):
     clear()
 
 
-    output_videos(results, statrequest, one_video_info=False)
+    output_videos(results, statrequest)
     log(history, "OUTPUT_VIDEOS", status="SUCCESS")
 
 

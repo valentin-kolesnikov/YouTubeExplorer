@@ -6,7 +6,7 @@ from datetime import datetime
 def age_calendar(dateBefore=False, dateAfter=False):
     plus_year = False
     now = datetime.now()
-    year = input("\nEnter the year: ")
+    year = input("\nEnter the year: ").strip()
 
     if year.isdigit() and 2006 <= int(year) <= now.year:
         if int(year) % 4 == 0 and int(year) % 100 != 0 or int(year) % 400 == 0:
@@ -24,7 +24,7 @@ def age_calendar(dateBefore=False, dateAfter=False):
         year = now.year
 
 
-    month = input("\nEnter the month numerously: ")
+    month = input("\nEnter the month numerously: ").strip()
 
     if month.isdigit() and int(month) < 13 and int(month) != 0:
         if int(year) == now.year and int(month) > now.month:
@@ -32,7 +32,7 @@ def age_calendar(dateBefore=False, dateAfter=False):
         month = str(month).zfill(2)
 
 
-    day = input("\nEnter the day numerously: ")
+    day = input("\nEnter the day numerously: ").strip()
 
     if day.isdigit() and int(day) != 0 and int(day) < 32:
         if int(year) == now.year and int(month) == now.month and int(day) > now.day:
