@@ -1,3 +1,5 @@
+import os
+import subprocess
 
 def log(history, action, **data):
     history.add_session(action, **data)
@@ -9,4 +11,4 @@ def log_error(history, reason, error):
     history.save()
 
 def clear():
-    print("\033[H\033[J", end="")
+    subprocess.run('cls' if os.name == 'nt' else 'clear', shell=True)
