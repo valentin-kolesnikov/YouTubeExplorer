@@ -8,23 +8,28 @@ from urllib.error import URLError
 
 TEST_URL = (
     "http://clients3.google.com/generate_204",
-    "https://www.cloudflare.com"
+    "https://www.cloudflare.com",
     "https://www.microsoft.com"
 )
 
 
 def internet_available():
     while True:
-        try:
-            urlopen(TEST_URL)
-            return False
+        is_connected = False
 
-        except OSError as exc:
-            
-            if WinError(exc):
+        for url in TEST_URL:
+            try:
+                urlopen(url, timeout=3)
+                is_connected = True
+                break
+
+            except (OSError, URLError):
                 continue
 
-        except URLError as exc:
-            print("The check server is likely unavailable.")
-            if isinstance(exc.reason, OSError):
-                WinError(exc.reason)
+        if is_connected:
+            return True
+
+        exc = OSError(11001, "No Internet connection available")
+            
+        if WinError(exc):
+            continue
