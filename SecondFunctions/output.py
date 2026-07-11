@@ -4,7 +4,9 @@ from datetime import datetime
 
 
 
-def output_videos(results, statrequest, one_video_info=False):
+def output_videos(results, statrequest, keywords, one_video_info=False):
+    print(f"Your request: {keywords}")
+
     number = 0
     for item in statrequest["items"]:
         title = item["snippet"]["title"]

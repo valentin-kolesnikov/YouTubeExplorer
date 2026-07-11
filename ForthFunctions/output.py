@@ -2,7 +2,9 @@ from datetime import datetime
 
 
 
-def output_playlists(statrequest):
+def output_playlists(statrequest, keywords):
+    print(f"Your request: {keywords}\n")
+
     number = 0
     for item in statrequest["items"]:
         title = item["snippet"]["title"]
@@ -20,7 +22,7 @@ def output_playlists(statrequest):
         number += 1
 
         print(
-            f"\n{number}.\n"
+            f"\n{number}."
             f"{title}\n"
             f"Playlist URL: https://www.youtube.com/playlist?list={playlist_id}\n"
             f"Privacy status: {status}; Videos: {itemCount}\n"

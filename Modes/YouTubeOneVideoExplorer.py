@@ -42,7 +42,7 @@ def launcherInfo(youtube):
     log(history, "COLLECT_ONE_VIDEO_INFO", status="SUCCESS")
     clear()
 
-    output_videos(results, statrequest, one_video_info=True)
+    output_videos(results, statrequest, keywords=None, one_video_info=True)
     log(history, "OUTPUT_ONE_VIDEO_INFO", status="SUCCESS")
 
     input("\n\nPress Enter to return...")

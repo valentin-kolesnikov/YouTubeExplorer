@@ -53,7 +53,7 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
             log(history, "COLLECT_PLAYLISTS", status="SUCCESS")
             clear()
 
-            output_playlists(statrequest)
+            output_playlists(statrequest, keywords)
             log(history, "OUTPUT_PLAYLISTS")
 
             videos_from_playlist(history, youtube)
@@ -74,7 +74,7 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
             log(history, "COLLECT_PLAYLISTS", status="SUCCESS")
             clear()
 
-            output_playlists(statrequest)
+            output_playlists(statrequest, keywords)
             log(history, "OUTPUT_PLAYLISTS")
 
             videos_from_playlist(history, youtube)
