@@ -12,7 +12,7 @@ def http_error(exc):
 
     match status:
         case 400:
-            issue = "Bad Request. There are some issues with Google requests."
+            issue = "Bad Request. There are some issues with Google requests. Make sure that you entered correctly."
 
         case 403:
             error_json = loads(exc.content.decode("utf-8"))

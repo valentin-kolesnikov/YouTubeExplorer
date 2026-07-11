@@ -1,6 +1,6 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 
-from youtube_transcript_api._errors import (VideoUnplayable, RequestBlocked, TranscriptsDisabled)
+from youtube_transcript_api._errors import (VideoUnplayable, RequestBlocked, TranscriptsDisabled, VideoUnavailable)
 
 from Patterns.EnteringURL import youtube_id_finder
 
@@ -64,6 +64,13 @@ def launcherSubtitles():
             input("\n\u001b[31mThe video does not have subtitles\u001b[0m\n\nPress Enter to return...")
             log(history, "TRANSCRIPTS_DISABLED")
 
+            return
+
+        except VideoUnavailable:
+        
+            input("\n\u001b[31mThe video is unavailable. Make sure that this is the link to the video.\u001b[0m\n\nPress Enter to return...")
+            log(history, "VIDEO_UNAVAILABLE")
+    
             return
     
 
