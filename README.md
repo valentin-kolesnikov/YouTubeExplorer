@@ -17,7 +17,6 @@
 > [!CAUTION]
 > The official repository is only available on my [GitHub](https://github.com/valentin-kolesnikov/YouTube_Explorer).
 > Any clones distributed on my behalf on other platforms are not my work.
-
 > [!WARNING]
 > Some antivirus software may flag the app as a potentially unwanted program (PUP). This is a false positive.
 > All materials used for the app are stored in the public repository.  
@@ -32,7 +31,7 @@
 | Export to DOCX | ❌ | ✅ |
 | Search videos | ✅ | ✅ |
 | Return YouTube Dislike | ❌ | ✅ |
-| Channel search | ⚠️ Limited | ✅ |
+| Channel search | ✅ | ✅ |
 | Playlist search | ⚠️ Limited | ✅ |
 | Viewing the transcript | ❌ | ✅ |
 | Download transcripts | ❌ | ✅ |
