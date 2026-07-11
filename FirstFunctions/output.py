@@ -2,6 +2,8 @@ from docx import Document
 
 from pathlib import Path
 
+from Patterns.save_history import clear
+
 import sys
 
 
@@ -28,6 +30,8 @@ def number_comments(comments, channel):
     number = input("How many comments do you need?: ").strip()
     while not number.isdigit():
         number = input("\nEnter again: ").strip()
+
+    clear()
 
     print(f"\nChannel: {channel}")
     for index, comment in enumerate(comments[:int(number)], 1):
