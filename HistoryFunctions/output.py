@@ -60,7 +60,7 @@ def open_history_json(json_path, selected):
     print("===================================================")
 
     
-    exc = input('\n1. Main Menu\n\nEnter the number (Press Enter to return): ')
+    exc = input('\n1. Main Menu\n\nEnter the number (Press Enter to return): ').strip()
     while True:
         
         
@@ -69,4 +69,4 @@ def open_history_json(json_path, selected):
         elif exc == "":
             return False
         else:
-            exc = input('\nEnter it again correctly: ')
+            exc = input('\nEnter it again correctly: ').strip()

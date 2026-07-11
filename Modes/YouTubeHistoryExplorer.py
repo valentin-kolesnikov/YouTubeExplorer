@@ -43,7 +43,7 @@ def launcherHistory():
                 else:
                     print(f"{index}. {folder.stem}")
 
-            number = input("\nEnter the number of the year (Press Enter to return): ")
+            number = input("\nEnter the number of the year (Press Enter to return): ").strip()
 
             if number == "":
                 if json_path.name == "HistoryLogs":

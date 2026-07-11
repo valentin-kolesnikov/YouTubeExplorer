@@ -24,7 +24,7 @@ def transcript_fetcher(history, video_id_list, languages_list, manually_generate
         try:
             if manually_generated == "1":
                 generated_forced = input("\nThere is no manually created transcript. Do you try to find a generated transcript?\n\n" \
-                "1. Yes\n2. No\n\nEnter the number: ")
+                "1. Yes\n2. No\n\nEnter the number: ").strip()
 
                 while True:
 
@@ -37,13 +37,13 @@ def transcript_fetcher(history, video_id_list, languages_list, manually_generate
                         return {}, True
                     
                     else:
-                        generated_forced = input("Enter again: ")
+                        generated_forced = input("Enter again: ").strip()
 
 
             elif manually_generated == "2":
 
                 manually_forced = input("There is no generated transcript. Do you try to find a manually created transcript?\n\n" \
-                "1. Yes\n2. No\n\nEnter the number: ")
+                "1. Yes\n2. No\n\nEnter the number: ").strip()
 
                 while True:
 
@@ -56,7 +56,7 @@ def transcript_fetcher(history, video_id_list, languages_list, manually_generate
                         return {}, True
                     
                     else:
-                        manually_forced = input("Enter again: ")
+                        manually_forced = input("Enter again: ").strip()
                 
 
             return transcript_subtitles, False

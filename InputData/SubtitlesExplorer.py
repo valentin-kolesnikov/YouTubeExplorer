@@ -28,7 +28,7 @@ def language_needed():
 
 
 def view_of_text():
-    manually_generated = input("\n1. Manually created transcripts\n2. Generated transcripts\n\nEnter the number: ")
+    manually_generated = input("\n1. Manually created transcripts\n2. Generated transcripts\n\nEnter the number: ").strip()
 
     while True:
         
@@ -36,6 +36,6 @@ def view_of_text():
             break
 
         else:
-            manually_generated = input("Enter again: ")
+            manually_generated = input("Enter again: ").strip()
     
     return manually_generated

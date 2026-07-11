@@ -32,24 +32,20 @@ def collect_other_playlists(youtube, keywords, ageAfter, ageBefore, maximum, whi
 
 
         except HttpError as exc:
-            
-            http_error(exc)
-            
-            return {}, True
         
+            issue = http_error(exc)
+
+            return issue, True
         
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return {}, True
+            return "OSError occurred", True
         
         except Exception:
-            
-            print("Probably, YouTube has problems with submitted objects")
-
-            return {}, True
+            return PatternError().pattern_exception(), True
     
 
 

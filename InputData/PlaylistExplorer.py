@@ -7,7 +7,7 @@ from re import search
 
 
 def  playlist_URL_extract():
-    playlist_URL = input('Enter the playlist URL with "PL" or "OL": ')
+    playlist_URL = input('Enter the playlist URL with "PL" or "OL": ').strip()
     
     while True:
         playlist_URL = playlist_URL.strip()
@@ -20,4 +20,4 @@ def  playlist_URL_extract():
         if for_id:
             return for_id.group(1)
 
-        playlist_URL = input("\nEnter again: ")
+        playlist_URL = input("\nEnter again: ").strip()

@@ -25,9 +25,9 @@ def count_keys(comments, search_terms):
 
 
 def number_comments(comments, channel):
-    number = input("How many comments do you need?: ")
+    number = input("How many comments do you need?: ").strip()
     while not number.isdigit():
-        number = input("\nEnter again: ")
+        number = input("\nEnter again: ").strip()
 
     print(f"\nChannel: {channel}")
     for index, comment in enumerate(comments[:int(number)], 1):
@@ -40,11 +40,12 @@ def number_comments(comments, channel):
 
 
 def save_docx(comments, channel, counts, amount_comments, video_id):
-    choice = input("\n\nDo you want to save the comments in a DOCX file? (y/n): ").lower()
+    choice = input("\n\nDo you want to save the comments in a DOCX file? (y/n): ").strip().lower()
     while True:
         if choice in ["y", "n"]:
             break
-        choice = input("\nEnter again correctly (y/n): ").lower()
+        choice = input("\nEnter again correctly (y/n): ").strip().lower()
+        
     if choice == "n":
         return choice, None
 

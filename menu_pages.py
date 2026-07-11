@@ -27,7 +27,7 @@ def menu_page1(youtube, exc_OAuth2, current_page):
         "6. One Video Info\n\n" \
         "0. Exit\n\n" \
         "Enter the number (press Enter for next page): "
-    )
+    ).strip()
 
     page1 = {
         "1": lambda: launcherComments(youtube),
@@ -64,7 +64,7 @@ def menu_page2(exc_OAuth2, current_page):
         "5. ABOUT\n\n" \
         "0. Exit\n\n" \
         "Enter the number (press Enter for prev page): "
-    )
+    ).strip()
 
     page2 = {
         "1": lambda: launcherKey(exc_OAuth2),

@@ -6,7 +6,7 @@ from re import search
 
 
 def youtube_id_finder():
-    url = input("Enter the video URL: ")
+    url = input("Enter the video URL: ").strip()
 
     while True:
         pattern = r"(?:youtu\.be/|youtube\.com/(?:watch\?v=|embed/|shorts/))?([0-9A-Za-z_-]{11})"
@@ -16,4 +16,4 @@ def youtube_id_finder():
             return match.group(1)
         
         else:
-            url = input("\nEnter the URL again correctly: ")
+            url = input("\nEnter the URL again correctly: ").strip()

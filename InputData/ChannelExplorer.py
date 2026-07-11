@@ -6,7 +6,7 @@ from re import search
 
 def get_info():
 
-    NameId = input("Enter the link with UC... or @... to the channel (possible separately): ")
+    NameId = input("Enter the link with UC... or @... to the channel (possible separately): ").strip()
 
     while True:
         NameId = NameId.strip()
@@ -18,13 +18,13 @@ def get_info():
         if for_handle:
             return None, for_handle.group(0)
 
-        NameId = input("\nEnter again: ")
+        NameId = input("\nEnter again: ").strip()
 
 
 
 
 def get_answer():
-    get_answers = input("\nDo you need to search for videos from the channel?(y/n): ").lower()
+    get_answers = input("\nDo you need to search for videos from the channel?(y/n): ").strip().lower()
 
     while True:
         if get_answers == "y":
@@ -34,7 +34,7 @@ def get_answer():
             break
 
         else:
-            get_answers = input("\nEnter again: ").lower()
+            get_answers = input("\nEnter again: ").strip().lower()
 
 
     return get_answers

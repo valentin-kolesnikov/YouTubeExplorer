@@ -25,7 +25,7 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
         print("2. Your playlists")
     print("0. Go back to the previous menu")
 
-    search_playlist = input("\nChoose the number: ")
+    search_playlist = input("\nChoose the number: ").strip()
 
     while True:
         if search_playlist == "1":
@@ -58,6 +58,8 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
 
             videos_from_playlist(history, youtube)
             return
+
+
         
 
         elif search_playlist == "2" and not exc_OAuth2:
@@ -86,19 +88,23 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
 
     
         else:
-            search_playlist = input("\nEnter again: ")
+            search_playlist = input("\nEnter again: ").strip()
 
 
 
 def videos_from_playlist(history, youtube):
-    go_to_another_part = input("\n\nDo you want to analyze the certain playlist? (y/n): ")
+    go_to_another_part = input("\n\nDo you want to analyze the certain playlist? (y/n): ").strip()
 
-    if go_to_another_part.lower() == "y":
-        print("")
-        log(history, "COLLECT_VIDEOS_OF_PLAYLISTS")
+    while True:
+        if go_to_another_part.lower() == "y":
+            print("")
+            log(history, "COLLECT_VIDEOS_OF_PLAYLISTS")
 
-        videos_of_playlists(history, youtube)
+            videos_of_playlists(history, youtube)
 
-    elif go_to_another_part.lower() == "n":
-        log(history, "EXIT")
-        return
+        elif go_to_another_part.lower() == "n":
+            log(history, "EXIT")
+            return
+        
+        else:
+            go_to_another_part = input("Enter again correctly (y/n): ").strip()

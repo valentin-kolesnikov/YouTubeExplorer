@@ -56,7 +56,7 @@ def WinError(exc):
     print(f"\n\u001b[31m{issue}\u001b[0m")
 
 
-    exit_continue = input("\n\u001b[31m1. Retry connection\n2. Exit\n\nYour choice:\u001b[0m")
+    exit_continue = input("\n\u001b[31m1. Retry connection\n2. Exit\n\nYour choice:\u001b[0m").strip()
     
     while True:
         if exit_continue == "1":
@@ -66,4 +66,4 @@ def WinError(exc):
             exit(1)
 
         else:
-            exit_continue = input("\n\u001b[31mEnter again:\u001b[0m")
+            exit_continue = input("\n\u001b[31mEnter again:\u001b[0m").strip()

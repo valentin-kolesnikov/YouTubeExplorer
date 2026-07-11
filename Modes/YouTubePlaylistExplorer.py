@@ -18,7 +18,7 @@ def launcherPlaylists(youtube, exc_OAuth2):
             "2. Collecting videos from the playlist\n" \
             "0. Go back to the start menu\n\n" \
             "Choose the number: "
-            )
+            ).strip()
         
         while True:
             if question == "0":
@@ -40,4 +40,4 @@ def launcherPlaylists(youtube, exc_OAuth2):
                 break
 
             else:
-                question = input("\nEnter again: ")
+                question = input("\nEnter again: ").strip()

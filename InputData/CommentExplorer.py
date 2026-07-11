@@ -6,19 +6,19 @@
 
 def youtube_filters():
     search_terms = []
-    terms = input("\nEnter the keywords by one (press Enter to continue): ")
+    terms = input("\nEnter the keywords by one (press Enter to continue): ").strip()
 
     while True:
         if terms == "":
             break
 
         search_terms.append(terms)
-        terms = input("\nMore?: ")
+        terms = input("\nMore?: ").strip()
 
     search_terms = set(search_terms)
 
 
-    which_order = input("\n1. By relevance\n2. By time\n\nEnter the number: ")
+    which_order = input("\n1. By relevance\n2. By time\n\nEnter the number: ").strip()
 
     while True:
         if which_order == "1":
@@ -30,7 +30,7 @@ def youtube_filters():
             break
 
         else:
-            which_order = input("\nEnter again: ")
+            which_order = input("\nEnter again: ").strip()
 
 
     return which_order, search_terms

@@ -43,11 +43,11 @@ def output(transcript_subtitles, available_lang, full_text):
 
 
 def save_docx(transcript_subtitles, available_lang, full_text):
-    choice = input("\n\nDo you want to save the full transcript in a DOCX file? (y/n): ").lower()
+    choice = input("\n\nDo you want to save the full transcript in a DOCX file? (y/n): ").strip().lower()
     while True:
         if choice in ["y", "n"]:
             break
-        choice = input("\nEnter again correctly (y/n): ").lower()
+        choice = input("\nEnter again correctly (y/n): ").strip().lower()
 
     if choice == "n":
             return choice, None
