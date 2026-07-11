@@ -74,7 +74,7 @@ def launcherChannels(youtube):
         clear()
 
 
-        output_channel_info(result, statrequests, get_answers, snistics)
+        output_channel_info(result, statrequests, get_answers, snistics, keywords)
         log(history, "OUTPUT_CHANNEL_INFO", status="SUCCESS")
 
 

@@ -4,8 +4,9 @@ from datetime import datetime
 
 
 
-def output_videos(results, statrequest, keywords, one_video_info=False):
-    print(f"Your request: {keywords}")
+def output_videos(results, statrequest, keywords=None, one_video_info=False):
+    if not one_video_info:
+        print(f"Your request: {keywords}")
 
     number = 0
     for item in statrequest["items"]:

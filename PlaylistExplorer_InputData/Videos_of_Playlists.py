@@ -16,6 +16,8 @@ from asyncio import run
 
 
 def videos_of_playlists(history, youtube):
+    clear()
+    
     playlist_URL = playlist_URL_extract()
     log(history, "ENTER_PLAYLIST_LINK", playlist_link="https://www.youtube.com/playlist?list=" + playlist_URL)
 
@@ -37,7 +39,7 @@ def videos_of_playlists(history, youtube):
     clear()
 
     print(f"https://www.youtube.com/playlist?list={playlist_URL}\n")
-    output_videos(results, statrequest, keywords=None, one_video_info=False)
+    output_videos(results, statrequest, one_video_info=False)
     log(history, "OUTPUT_VIDEOS")
 
     input("\nPress Enter to return...")

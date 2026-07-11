@@ -2,8 +2,9 @@ from datetime import datetime
 
 
 
-def output_playlists(statrequest, keywords):
-    print(f"Your request: {keywords}\n")
+def output_playlists(statrequest, keywords=None):
+    if keywords:
+        print(f"Your request: {keywords}")
 
     number = 0
     for item in statrequest["items"]:
@@ -29,3 +30,5 @@ def output_playlists(statrequest, keywords):
             f"{formatted_date}\n"
             f"{channelName}\n"
             f"Channel URL: https://www.youtube.com/channel/{channelId}")
+
+        # If there are a lot of information, I need to add a feature to create DOCX

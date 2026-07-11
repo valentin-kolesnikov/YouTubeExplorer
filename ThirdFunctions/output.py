@@ -1,6 +1,6 @@
 from datetime import datetime
 
-def output_channel_info(result, statrequests, get_answers, snistics):
+def output_channel_info(result, statrequests, get_answers, snistics, keywords=None):
 
     print(f"Channel: {snistics["title"]}\n"
           f"https://www.youtube.com/channel/{snistics["channelId"]}\n"
@@ -12,10 +12,11 @@ def output_channel_info(result, statrequests, get_answers, snistics):
     print("-" * 50)
 
     if get_answers == "y":
+        print(f"Your request: {keywords}\n")
         print("Your received videos:")
         
     elif get_answers == "n":
-        print("Three videos from the newest:")
+        print("Four videos from the newest:")
 
     number = 0
     for item in statrequests["items"]:
