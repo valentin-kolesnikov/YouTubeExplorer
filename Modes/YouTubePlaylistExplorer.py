@@ -13,6 +13,8 @@ def launcherPlaylists(youtube, exc_OAuth2):
     history = HistorySessions("Playlist")
 
     while True:
+        clear()
+        
         question = input(
             "1. Collecting playlists\n" \
             "2. Collecting videos from the playlist\n" \
