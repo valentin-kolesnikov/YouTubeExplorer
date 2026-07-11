@@ -33,7 +33,7 @@ if __name__ == "__main__":
         
         try:
             clear()
-            print("============  v1.3.0  ============")
+            print("=============  v1.3.0  =============")
 
             if current_page == 1:
                 current_page = menu_page1(youtube, exc_OAuth2, current_page)
