@@ -37,7 +37,7 @@ def videos_of_playlists(history, youtube):
     clear()
 
     print(f"https://www.youtube.com/playlist?list={playlist_URL}\n")
-    output_videos(results, statrequest, one_video_info=False)
+    output_videos(results, statrequest, keywords=None, one_video_info=False)
     log(history, "OUTPUT_VIDEOS")
 
     input("\nPress Enter to return...")
