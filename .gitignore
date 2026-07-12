@@ -31,6 +31,9 @@ dist/
 *tempCodeRunnerFile.py
 Pictures/
 Keys/
-YouTubeComments/
-YouTubeTranscripts/
-YouTubeHistory/
+Comments_in_DOCX/
+Transcripts_in_DOCX/
+HistoryLogs/
+Videos_in_DOCX/
+Channels_in_DOCX/
+Playlists_in_DOCX/
