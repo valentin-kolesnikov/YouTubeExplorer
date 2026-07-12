@@ -2,7 +2,7 @@ from InputData.ChannelExplorer import get_info, get_answer
 
 from ThirdFunctions.collecting_info import collect_channel_info, search_channel_videos, collect_popular_videos
 
-from ThirdFunctions.output import output_channel_info
+from ThirdFunctions.output import output_channel_info, save_docx
 
 from Patterns.Search_Engine import search_engine
 
@@ -74,8 +74,12 @@ def launcherChannels(youtube):
         clear()
 
 
-        output_channel_info(result, statrequests, get_answers, snistics, keywords)
+        parsed_videos = output_channel_info(result, statrequests, get_answers, snistics, keywords)
         log(history, "OUTPUT_CHANNEL_INFO", status="SUCCESS")
+
+
+        choice, full_path = save_docx(snistics, parsed_videos, keywords)
+        log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
 
 
 
@@ -107,8 +111,12 @@ def launcherChannels(youtube):
         clear()
 
 
-        output_channel_info(result, statrequests, get_answers, snistics)
+        parsed_videos = output_channel_info(result, statrequests, get_answers, snistics)
         log(history, "OUTPUT_CHANNEL_INFO", status="SUCCESS")
+
+
+        choice, full_path = save_docx(snistics, parsed_videos)
+        log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
 
 
     input("\n\nPress Enter to return...")
