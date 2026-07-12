@@ -2,7 +2,7 @@ from ForthFunctions.collecting_info import collect_other_playlists, collect_play
 
 from PlaylistExplorer_InputData.Videos_of_Playlists import videos_of_playlists
 
-from ForthFunctions.output import output_playlists
+from ForthFunctions.output import output_playlists, save_docx
 
 from Patterns.Search_Engine import search_engine
 
@@ -53,8 +53,11 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
             log(history, "COLLECT_PLAYLISTS", status="SUCCESS")
             clear()
 
-            output_playlists(statrequest, keywords)
+            parsed_playlists = output_playlists(statrequest, keywords)
             log(history, "OUTPUT_PLAYLISTS")
+
+            choice, full_path = save_docx(parsed_playlists, keywords)
+            log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
 
             videos_from_playlist(history, youtube)
             return
@@ -74,8 +77,11 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
             log(history, "COLLECT_PLAYLISTS", status="SUCCESS")
             clear()
 
-            output_playlists(statrequest)
+            parsed_playlists = output_playlists(statrequest)
             log(history, "OUTPUT_PLAYLISTS")
+
+            choice, full_path = save_docx(parsed_playlists, keywords="Private playlists")
+            log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
 
             videos_from_playlist(history, youtube)
             return
@@ -93,16 +99,16 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
 
 
 def videos_from_playlist(history, youtube):
-    go_to_another_part = input("\n\nDo you want to analyze the certain playlist? (y/n): ").strip()
+    go_to_another_part = input("\n\nDo you want to analyze the certain playlist? (y/n): ").strip().lower()
 
     while True:
-        if go_to_another_part.lower() == "y":
+        if go_to_another_part == "y":
             print("")
             log(history, "COLLECT_VIDEOS_OF_PLAYLISTS")
 
             videos_of_playlists(history, youtube)
 
-        elif go_to_another_part.lower() == "n":
+        elif go_to_another_part == "n":
             log(history, "EXIT")
             return
         
