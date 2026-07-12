@@ -10,7 +10,7 @@ from Patterns.HistoryLogs import HistorySessions
 
 from Patterns.save_history import log, log_error, clear
 
-from SecondFunctions.output import output_videos
+from SecondFunctions.output import output_videos, save_docx
 
 from asyncio import run
 
@@ -42,8 +42,11 @@ def launcherInfo(youtube):
     log(history, "COLLECT_ONE_VIDEO_INFO", status="SUCCESS")
     clear()
 
-    output_videos(results, statrequest, one_video_info=True)
+    parsed_videos = output_videos(results, statrequest, one_video_info=True)
     log(history, "OUTPUT_ONE_VIDEO_INFO", status="SUCCESS")
+
+    choice, full_path = save_docx(parsed_videos, keywords=video_id)
+    log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
 
     input("\n\nPress Enter to return...")
     log(history, "EXIT")

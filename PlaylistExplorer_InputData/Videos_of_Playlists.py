@@ -1,4 +1,4 @@
-from SecondFunctions.output import output_videos
+from SecondFunctions.output import output_videos, save_docx
 
 from ForthFunctions.collecting_info import collect_videos_of_playlist
 
@@ -39,8 +39,12 @@ def videos_of_playlists(history, youtube):
     clear()
 
     print(f"https://www.youtube.com/playlist?list={playlist_URL}\n")
-    output_videos(results, statrequest, one_video_info=False)
-    log(history, "OUTPUT_VIDEOS")
+    parsed_videos = output_videos(results, statrequest)
+    log(history, "OUTPUT_VIDEOS", status="SUCCESS")
+    
+
+    choice, full_path = save_docx(parsed_videos, keywords=playlist_URL)
+    log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
 
     input("\nPress Enter to return...")
     log(history, "EXIT")

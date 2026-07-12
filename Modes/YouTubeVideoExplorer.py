@@ -2,7 +2,7 @@ from InputData.VideoExplorer import searching_for_videos
 
 from SecondFunctions.collecting_info import collect_searches
 
-from SecondFunctions.output import output_videos
+from SecondFunctions.output import output_videos, save_docx
 
 from Patterns.collectingStats import collect_stats
 
@@ -52,8 +52,12 @@ def launcherVideos(youtube):
     clear()
 
 
-    output_videos(results, statrequest, keywords)
+    parsed_videos = output_videos(results, statrequest, keywords)
     log(history, "OUTPUT_VIDEOS", status="SUCCESS")
+    
+
+    choice, full_path = save_docx(parsed_videos, keywords, region)
+    log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
 
 
     input("\n\nPress Enter to return...")
