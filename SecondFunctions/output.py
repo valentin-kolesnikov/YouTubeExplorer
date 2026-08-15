@@ -1,13 +1,8 @@
+import sys
 from datetime import datetime
-
 from pathlib import Path
 
 from docx import Document
-
-import sys
-
-
-
 
 
 def output_videos(results, statrequest, keywords=None, one_video_info=False):

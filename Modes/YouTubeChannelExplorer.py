@@ -1,27 +1,18 @@
-from InputData.ChannelExplorer import get_info, get_answer
-
-from ThirdFunctions.collecting_info import collect_channel_info, search_channel_videos, collect_popular_videos
-
-from ThirdFunctions.output import output_channel_info, save_docx
-
-from Patterns.Search_Engine import search_engine
-
-from Patterns.check_connection import internet_available
-
-from Patterns.collectingStats import collect_stats
-
-from Patterns.HistoryLogs import HistorySessions
-
-from Patterns.save_history import log, log_error, clear
-
-from Patterns.asyncRYD import ryd
-
 from asyncio import run
 
-
-
-
-
+from InputData.ChannelExplorer import get_answer, get_info
+from Patterns.asyncRYD import ryd
+from Patterns.check_connection import internet_available
+from Patterns.collectingStats import collect_stats
+from Patterns.HistoryLogs import HistorySessions
+from Patterns.save_history import clear, log, log_error
+from Patterns.Search_Engine import search_engine
+from ThirdFunctions.collecting_info import (
+    collect_channel_info,
+    collect_popular_videos,
+    search_channel_videos,
+)
+from ThirdFunctions.output import output_channel_info, save_docx
 
 
 def launcherChannels(youtube):

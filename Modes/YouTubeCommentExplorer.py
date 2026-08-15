@@ -1,18 +1,10 @@
-from InputData.CommentExplorer import youtube_filters
-
-from FirstFunctions.collecting_info import collect_comments, channel_name
-
+from FirstFunctions.collecting_info import channel_name, collect_comments
 from FirstFunctions.output import count_keys, number_comments, save_docx
-
+from InputData.CommentExplorer import youtube_filters
 from Patterns.check_connection import internet_available
-
 from Patterns.EnteringURL import youtube_id_finder
-
 from Patterns.HistoryLogs import HistorySessions
-
-from Patterns.save_history import log, log_error, clear
-
-
+from Patterns.save_history import clear, log, log_error
 
 
 def launcherComments(youtube):

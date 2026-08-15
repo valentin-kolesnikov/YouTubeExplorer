@@ -1,18 +1,11 @@
-from SecondFunctions.output import output_videos, save_docx
-
-from ForthFunctions.collecting_info import collect_videos_of_playlist
-
-from InputData.PlaylistExplorer import playlist_URL_extract
-
-from Patterns.collectingStats import collect_stats
-
-from Patterns.save_history import log, log_error, clear
-
-from Patterns.asyncRYD import ryd
-
 from asyncio import run
 
-
+from ForthFunctions.collecting_info import collect_videos_of_playlist
+from InputData.PlaylistExplorer import playlist_URL_extract
+from Patterns.asyncRYD import ryd
+from Patterns.collectingStats import collect_stats
+from Patterns.save_history import clear, log, log_error
+from SecondFunctions.output import output_videos, save_docx
 
 
 def videos_of_playlists(history, youtube):

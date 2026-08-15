@@ -1,10 +1,5 @@
-from pathlib import Path
-
 import sys
-
-
-
-
+from pathlib import Path
 
 if getattr(sys, "frozen", False):
     dir = Path(sys.executable).resolve().parents[1]

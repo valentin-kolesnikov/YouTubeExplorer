@@ -1,4 +1,6 @@
+import sys
 from json import loads
+
 
 class PatternError:
     def pattern_exception():
@@ -63,7 +65,7 @@ def WinError(exc):
             return True
         
         elif exit_continue == "2":
-            exit(1)
+            sys.exit(1)
 
         else:
             exit_continue = input("\n\u001b[31mEnter again:\u001b[0m").strip()

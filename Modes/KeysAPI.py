@@ -1,7 +1,6 @@
 from Starter.KeyExplorer import memory
 
 
-
 def launcherKey(exc_OAuth2):
     key = memory.load_key()
     if key:

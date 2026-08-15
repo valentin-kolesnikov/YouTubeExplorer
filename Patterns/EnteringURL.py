@@ -1,10 +1,6 @@
 from re import search
 
 
-
-
-
-
 def youtube_id_finder():
     url = input("Enter the video URL: ").strip()
 

@@ -1,17 +1,16 @@
-from Modes.YouTubeCommentExplorer import launcherComments
-from Modes.YouTubeVideoExplorer import launcherVideos
+from sys import exit
+
+from Modes.KeysAPI import launcherKey
+from Modes.YouTubeASCIIExplorer import launcherASCII
 from Modes.YouTubeChannelExplorer import launcherChannels
+from Modes.YouTubeCommentExplorer import launcherComments
+from Modes.YouTubeExplorerLicense import launcherABOUT, launcherLICENSE
+from Modes.YouTubeHistoryExplorer import launcherHistory
+from Modes.YouTubeOneVideoExplorer import launcherInfo
 from Modes.YouTubePlaylistExplorer import launcherPlaylists
 from Modes.YouTubeSubtitlesExplorer import launcherSubtitles
-from Modes.YouTubeOneVideoExplorer import launcherInfo
-from Modes.YouTubeExplorerLicense import launcherABOUT, launcherLICENSE
-from Modes.YouTubeASCIIExplorer import launcherASCII
-from Modes.YouTubeHistoryExplorer import launcherHistory
-from Modes.KeysAPI import launcherKey
-
+from Modes.YouTubeVideoExplorer import launcherVideos
 from Patterns.save_history import clear
-
-from sys import exit
 
 
 def menu_page1(youtube, exc_OAuth2, current_page):
@@ -35,7 +34,7 @@ def menu_page1(youtube, exc_OAuth2, current_page):
         "3": lambda: launcherChannels(youtube),
         "4": lambda: launcherPlaylists(youtube, exc_OAuth2),
         "5": lambda: launcherSubtitles(),
-        "6": lambda:  launcherInfo(youtube)
+        "6": lambda: launcherInfo(youtube)
     }
 
     if questionist1 == "":

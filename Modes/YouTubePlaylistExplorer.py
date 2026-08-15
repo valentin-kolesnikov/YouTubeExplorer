@@ -1,12 +1,7 @@
+from Patterns.HistoryLogs import HistorySessions
+from Patterns.save_history import clear, log
 from PlaylistExplorer_InputData.Collection_of_Playlists import collection_of_playlists
 from PlaylistExplorer_InputData.Videos_of_Playlists import videos_of_playlists
-
-from Patterns.HistoryLogs import HistorySessions
-
-from Patterns.save_history import log, clear
-
-
-
 
 
 def launcherPlaylists(youtube, exc_OAuth2):

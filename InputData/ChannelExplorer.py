@@ -1,9 +1,6 @@
 from re import search
 
 
-
-
-
 def get_info():
 
     NameId = input("Enter the link with UC... or @... to the channel (possible separately): ").strip()
@@ -27,10 +24,7 @@ def get_answer():
     get_answers = input("\nDo you need to search for videos from the channel?(y/n): ").strip().lower()
 
     while True:
-        if get_answers == "y":
-            break
-
-        elif get_answers == "n":
+        if get_answers in ["y", "n"]:
             break
 
         else:

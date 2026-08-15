@@ -1,7 +1,5 @@
 from json import load
 
-
-
 COMMENT_NAMES ={
     "video_link": "",
     "search_terms": "Keywords:",

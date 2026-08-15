@@ -1,12 +1,9 @@
-from googleapiclient.errors import HttpError
+from json import loads
 
+from googleapiclient.errors import HttpError
 from httplib2.error import ServerNotFoundError
 
 from Patterns.check_connection import internet_available
-
-from json import loads
-
-
 
 
 def test_quota(youtube):

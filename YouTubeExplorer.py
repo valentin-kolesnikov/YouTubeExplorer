@@ -1,20 +1,10 @@
-from Starter.KeyExplorer import youtube_api_key, window_title
-from Starter.QuotaExplorer import test_quota
-from Starter.OAuth2 import youtube_OAuth2
-
-from Patterns.save_history import clear
-
-from menu_pages import menu_page1, menu_page2
-
 from sys import exit
 
-
-
-
-
-
-
-
+from menu_pages import menu_page1, menu_page2
+from Patterns.save_history import clear
+from Starter.KeyExplorer import window_title, youtube_api_key
+from Starter.OAuth2 import youtube_OAuth2
+from Starter.QuotaExplorer import test_quota
 
 if __name__ == "__main__":
     window_title("YouTube Explorer")
@@ -33,7 +23,7 @@ if __name__ == "__main__":
         
         try:
             clear()
-            print("=============  v1.3.0  =============")
+            print("=============  v1.4.0  =============")
 
             if current_page == 1:
                 current_page = menu_page1(youtube, exc_OAuth2, current_page)

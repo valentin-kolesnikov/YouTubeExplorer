@@ -1,10 +1,7 @@
-from Patterns.errors import WinError
-
+from urllib.error import URLError
 from urllib.request import urlopen
 
-from urllib.error import URLError
-
-
+from Patterns.errors import WinError
 
 TEST_URL = (
     "http://clients3.google.com/generate_204",

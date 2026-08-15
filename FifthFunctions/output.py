@@ -1,9 +1,7 @@
-from docx import Document
-
+import sys
 from pathlib import Path
 
-import sys
-
+from docx import Document
 
 
 def available_languages(transcript_subtitles):

@@ -1,11 +1,7 @@
-from googleapiclient.discovery import build
-
+import sys
 from pathlib import Path
 
-import sys
-
-
-
+from googleapiclient.discovery import build
 
 
 def window_title(title):

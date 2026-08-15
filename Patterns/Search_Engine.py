@@ -1,10 +1,6 @@
 from Patterns.fileCalendar import age_calendar
 
 
-
-
-
-
 def search_engine(playlist_enabled=False):
     keywords = input("\nEnter a request on YouTube: ").strip()
 

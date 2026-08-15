@@ -1,29 +1,23 @@
 from youtube_transcript_api import YouTubeTranscriptApi
-
-from youtube_transcript_api._errors import (VideoUnplayable, RequestBlocked, TranscriptsDisabled, VideoUnavailable)
-
-from Patterns.EnteringURL import youtube_id_finder
-
-from Patterns.HistoryLogs import HistorySessions
-
-from Patterns.save_history import log, clear
-
-from Patterns.errors import WinError
+from youtube_transcript_api._errors import (
+    RequestBlocked,
+    TranscriptsDisabled,
+    VideoUnavailable,
+    VideoUnplayable,
+)
 
 from FifthFunctions.collecting_info import transcript_fetcher
-
-from FifthFunctions.output import available_languages, transcript_fetch, output, save_docx
-
+from FifthFunctions.output import (
+    available_languages,
+    output,
+    save_docx,
+    transcript_fetch,
+)
 from InputData.SubtitlesExplorer import language_needed, view_of_text
-
-
-
-
-
-
-
-
-
+from Patterns.EnteringURL import youtube_id_finder
+from Patterns.errors import WinError
+from Patterns.HistoryLogs import HistorySessions
+from Patterns.save_history import clear, log
 
 
 def launcherSubtitles():

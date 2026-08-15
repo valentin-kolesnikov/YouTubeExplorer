@@ -1,24 +1,13 @@
-from InputData.VideoExplorer import searching_for_videos
-
-from SecondFunctions.collecting_info import collect_searches
-
-from SecondFunctions.output import output_videos, save_docx
-
-from Patterns.collectingStats import collect_stats
-
-from Patterns.check_connection import internet_available
-
-from Patterns.HistoryLogs import HistorySessions
-
-from Patterns.save_history import log, log_error, clear
-
-from Patterns.asyncRYD import ryd
-
 from asyncio import run
 
-
-
-
+from InputData.VideoExplorer import searching_for_videos
+from Patterns.asyncRYD import ryd
+from Patterns.check_connection import internet_available
+from Patterns.collectingStats import collect_stats
+from Patterns.HistoryLogs import HistorySessions
+from Patterns.save_history import clear, log, log_error
+from SecondFunctions.collecting_info import collect_searches
+from SecondFunctions.output import output_videos, save_docx
 
 
 def launcherVideos(youtube):

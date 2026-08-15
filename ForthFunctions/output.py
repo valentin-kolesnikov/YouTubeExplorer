@@ -1,11 +1,8 @@
+import sys
 from datetime import datetime
-
 from pathlib import Path
 
 from docx import Document
-
-import sys
-
 
 
 def output_playlists(statrequest, keywords=None):

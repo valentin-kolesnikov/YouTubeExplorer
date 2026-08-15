@@ -1,21 +1,12 @@
-from Patterns.asyncRYD import ryd
-
-from Patterns.EnteringURL import youtube_id_finder
-
-from Patterns.collectingStats import collect_stats
-
-from Patterns.check_connection import internet_available
-
-from Patterns.HistoryLogs import HistorySessions
-
-from Patterns.save_history import log, log_error, clear
-
-from SecondFunctions.output import output_videos, save_docx
-
 from asyncio import run
 
-
-
+from Patterns.asyncRYD import ryd
+from Patterns.check_connection import internet_available
+from Patterns.collectingStats import collect_stats
+from Patterns.EnteringURL import youtube_id_finder
+from Patterns.HistoryLogs import HistorySessions
+from Patterns.save_history import clear, log, log_error
+from SecondFunctions.output import output_videos, save_docx
 
 
 def launcherInfo(youtube):

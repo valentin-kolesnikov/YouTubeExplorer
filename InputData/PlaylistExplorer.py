@@ -1,13 +1,8 @@
 from re import search
 
 
-
-
-
-
-
 def  playlist_URL_extract():
-    playlist_URL = input('Enter the playlist URL with "PL" or "OL": ').strip()
+    playlist_URL = input('\nEnter the playlist URL with "PL" or "OL": ').strip()
     
     while True:
         playlist_URL = playlist_URL.strip()

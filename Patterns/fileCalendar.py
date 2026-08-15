@@ -1,11 +1,9 @@
 from datetime import datetime
 
 
-
-
 def age_calendar(dateBefore=False, dateAfter=False):
     plus_year = False
-    now = datetime.now()
+    now = datetime.now().astimezone()
     year = input("\nEnter the year: ").strip()
 
     if year.isdigit() and 2006 <= int(year) <= now.year:
@@ -38,16 +36,12 @@ def age_calendar(dateBefore=False, dateAfter=False):
         if int(year) == now.year and int(month) == now.month and int(day) > now.day:
             day = str(now.day).zfill(2)
 
-        elif month in ['01', '03', '05', '07', '08', '10', '12']:
-            day = str(day).zfill(2)
-
-        elif int(day) < 31 and month in ['04', '06', '09', '11']:
-            day = str(day).zfill(2)
-
-        elif plus_year and month == "02" and int(day) < 30:
-            day = str(day).zfill(2)
-        
-        elif not plus_year and month == "02" and int(day) < 29:
+        elif (
+            month in ['01', '03', '05', '07', '08', '10', '12'] 
+            or int(day) < 31 and month in ['04', '06', '09', '11'] 
+            or plus_year and month == "02" and int(day) < 30 
+            or not plus_year and month == "02" and int(day) < 29
+        ):
             day = str(day).zfill(2)
         
         else:

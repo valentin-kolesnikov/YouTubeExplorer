@@ -1,10 +1,6 @@
-from aiohttp import ClientSession
-
 from asyncio import gather
 
-
-
-
+from aiohttp import ClientSession
 
 
 async def fetch_ryd(session, vid):

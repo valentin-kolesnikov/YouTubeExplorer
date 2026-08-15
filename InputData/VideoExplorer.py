@@ -1,9 +1,6 @@
-from Patterns.Search_Engine import search_engine
-
 from re import fullmatch
 
-
-
+from Patterns.Search_Engine import search_engine
 
 
 def searching_for_videos():

@@ -1,12 +1,7 @@
-from datetime import datetime
-
-from json import dump 
-
-from pathlib import Path
-
 import sys
-
-
+from datetime import datetime
+from json import dump
+from pathlib import Path
 
 
 class HistorySessions:
@@ -14,7 +9,7 @@ class HistorySessions:
 
         self.tool = tool
 
-        now = datetime.now()
+        now = datetime.now().astimezone()
 
         self.timestamp = now.strftime("%H-%M-%S")
 
@@ -43,7 +38,7 @@ class HistorySessions:
         }
     
     def now(self):
-        return datetime.now().strftime("%H:%M:%S")
+        return datetime.now().astimezone().strftime("%H:%M:%S")
 
     def add_session(self, action, **data):
 

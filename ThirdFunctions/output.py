@@ -1,11 +1,8 @@
+import sys
 from datetime import datetime
-
-from docx import Document
-
 from pathlib import Path
 
-import sys
-
+from docx import Document
 
 
 def output_channel_info(result, statrequests, get_answers, snistics, keywords=None):

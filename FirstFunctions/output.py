@@ -1,11 +1,9 @@
-from docx import Document
-
+import sys
 from pathlib import Path
 
+from docx import Document
+
 from Patterns.save_history import clear
-
-import sys
-
 
 
 def count_keys(comments, search_terms):

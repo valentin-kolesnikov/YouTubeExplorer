@@ -1,16 +1,7 @@
-from HistoryFunctions.output import open_history_json
-
+import sys
 from pathlib import Path
 
-import sys
-
-
-
-
-
-
-
-
+from HistoryFunctions.output import open_history_json
 
 
 def launcherHistory():
@@ -47,7 +38,7 @@ def launcherHistory():
 
             if number == "":
                 if json_path.name == "HistoryLogs":
-                    raise Exception
+                    raise ValueError
 
                 json_path = json_path.parent
                 print("\033[H\033[J", end="")
@@ -69,14 +60,14 @@ def launcherHistory():
                 exc = open_history_json(relative_display, selected)
                 
                 if exc:
-                    raise Exception
+                    raise ValueError
                 elif not exc:
                     print("\033[H\033[J", end="")
                     continue
                 
             return selected, False
 
-    except Exception:
+    except ValueError:
         if not json_path.exists():
             print("\033[H\033[J", end="")
             print("No history found.")
