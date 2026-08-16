@@ -1,12 +1,8 @@
-from googleapiclient.errors import HttpError
-
-from Patterns.errors import PatternError, http_error, WinError
-
 from datetime import datetime
 
+from googleapiclient.errors import HttpError
 
-
-
+from Patterns.errors import PatternError, WinError, http_error
 
 
 def collect_channel_info(youtube, for_id, for_handle):
@@ -18,7 +14,7 @@ def collect_channel_info(youtube, for_id, for_handle):
                 id=for_id
             ).execute()
             
-            if "items" in request and request["items"]:
+            if request.get("items"):
                 channel_id = request["items"][0]["id"]
             else:
                 raise ValueError
@@ -63,19 +59,8 @@ def collect_channel_info(youtube, for_id, for_handle):
             return "OSError occurred", {}, True
         
         
-        except Exception:
-
-            if ValueError:
-                issue = "The channel is not found."
-
-            else:
-                issue = "Unknown problem."
-
-            print(f"\n{issue}")
-
-            input("\nPress Enter to return...")
-
-            return issue, {}, True
+        except Exception as exc:
+            return PatternError().pattern_exception(exc), {}, True
     
 
     
@@ -169,5 +154,5 @@ def collect_popular_videos(youtube, uploads_videos):
 
             return "OSError occurred", True
         
-        except Exception:
-            return PatternError().pattern_exception(), True
+        except Exception as exc:
+            return PatternError().pattern_exception(exc), True

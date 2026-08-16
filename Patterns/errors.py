@@ -3,10 +3,13 @@ from json import loads
 
 
 class PatternError:
-    def pattern_exception():
-        print("Probably, YouTube has problems with submitted objects")
-
-        return "Unexpected error occurred" 
+    def pattern_exception(self, exc=None):
+        if exc is None:
+            return "Unexpected error occurred"
+        
+        print(f"\033[31mUnexpected Error: {type(exc).__name__}: {exc}\033[0m")
+        input("\nPress Enter to return...")
+        return exc
 
 
 def http_error(exc):
@@ -47,10 +50,13 @@ def WinError(exc):
 
     match exc.errno:
         case 10054:
-            issue = "Connection was forcibly closed by the remote host (WinError 10054)"
+            issue = "Connection was forcibly closed by the remote host (WinError 10054)."
+
+        case 10061:
+            issue = "Connection refused (WinError 10061). Advice: try to turn off or configure the proxy correctly if you use one."
 
         case 11001:
-            issue = "No Internet connection available (WinError 11001)"
+            issue = "No Internet connection available (WinError 11001)."
 
         case _:
             issue = "Internet connection is probably unavailable."

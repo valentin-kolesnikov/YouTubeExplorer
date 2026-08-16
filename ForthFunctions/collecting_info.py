@@ -1,12 +1,6 @@
 from googleapiclient.errors import HttpError
 
-from Patterns.errors import PatternError, http_error, WinError
-
-
-
-
-
-
+from Patterns.errors import PatternError, WinError, http_error
 
 
 def collect_other_playlists(youtube, keywords, ageAfter, ageBefore, maximum, which_order):
@@ -22,11 +16,7 @@ def collect_other_playlists(youtube, keywords, ageAfter, ageBefore, maximum, whi
                 maxResults=maximum,
             ).execute()
 
-            playlist_ids = []
-
-            for item in request["items"]:
-                playlist_id = item["id"]["playlistId"]
-                playlist_ids.append(playlist_id)
+            playlist_ids = [item["id"]["playlistId"] for item in request["items"]]
 
             return playlist_ids, False
 
@@ -44,8 +34,8 @@ def collect_other_playlists(youtube, keywords, ageAfter, ageBefore, maximum, whi
 
             return "OSError occurred", True
         
-        except Exception:
-            return PatternError().pattern_exception(), True
+        except Exception as exc:
+            return PatternError().pattern_exception(exc), True
     
 
 
@@ -76,8 +66,8 @@ def collect_playlist_details(youtube, playlist_ids):
 
             return "OSError occurred", True
         
-        except Exception:
-            return PatternError().pattern_exception(), True
+        except Exception as exc:
+            return PatternError().pattern_exception(exc), True
     
 
 
@@ -95,8 +85,9 @@ def collect_videos_of_playlist(youtube, playlist_URL):
                     pageToken=next_page_token
                 ).execute()
 
-                for item in playlist_request["items"]:
-                    video_ids.append(item["contentDetails"]["videoId"])
+                video_ids.extend(
+                    item["contentDetails"]["videoId"] for item in playlist_request["items"]
+                )
 
                 next_page_token = playlist_request.get("nextPageToken")
 
@@ -119,8 +110,8 @@ def collect_videos_of_playlist(youtube, playlist_URL):
 
             return "OSError occurred", True
         
-        except Exception:
-            return PatternError().pattern_exception(), True
+        except Exception as exc:
+            return PatternError().pattern_exception(exc), True
 
 
 
@@ -140,8 +131,7 @@ def collect_your_playlists(youtube):
                     mine=True
                 ).execute()
 
-                for item in mine_playlists["items"]:
-                    statrequest.append(item)
+                statrequest.extend(mine_playlists["items"])
 
                 next_page_token = mine_playlists.get("nextPageToken")
 
@@ -163,5 +153,5 @@ def collect_your_playlists(youtube):
 
             return "OSError occurred", True
         
-        except Exception:
-            return PatternError().pattern_exception(), True
+        except Exception as exc:
+            return PatternError().pattern_exception(exc), True

@@ -1,9 +1,6 @@
 from googleapiclient.errors import HttpError
 
-from Patterns.errors import PatternError, http_error, WinError
-
-
-
+from Patterns.errors import PatternError, WinError, http_error
 
 
 def channel_name(video_id, youtube):
@@ -32,8 +29,8 @@ def channel_name(video_id, youtube):
 
             return "OSError occurred", True
         
-        except Exception:
-            return PatternError().pattern_exception(), True
+        except Exception as exc:
+            return PatternError().pattern_exception(exc), True
     
 
 
@@ -90,5 +87,5 @@ def collect_comments(video_id, search_terms, which_order, youtube):
 
             return "OSError occurred", True
         
-        except Exception:
-            return PatternError().pattern_exception(), True
+        except Exception as exc:
+            return PatternError().pattern_exception(exc), True

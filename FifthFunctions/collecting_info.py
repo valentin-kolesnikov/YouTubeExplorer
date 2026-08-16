@@ -1,10 +1,11 @@
+from youtube_transcript_api._errors import (
+    NoTranscriptFound,
+    TranslationLanguageNotAvailable,
+    VideoUnavailable,
+)
+
+from Patterns.errors import PatternError
 from Patterns.save_history import log
-
-from youtube_transcript_api._errors import (NoTranscriptFound, 
-                                             VideoUnavailable, 
-                                             TranslationLanguageNotAvailable
-                                             )
-
 
 
 def transcript_fetcher(history, video_id_list, languages_list, manually_generated):
@@ -84,9 +85,7 @@ def transcript_fetcher(history, video_id_list, languages_list, manually_generate
 
         return {}, True
     
-    except Exception:
-        
-        print("Probably, the service has problems with submitted objects")
-        log(history, "UNEXPECTED_ERROR")
+    except Exception as exc:
+        PatternError().pattern_exception(exc), True
 
         return {}, True
