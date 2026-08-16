@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 
 from HistoryFunctions.output import open_history_json
+from Patterns.save_history import clear
 
 
 def launcherHistory():
@@ -41,40 +42,40 @@ def launcherHistory():
                     raise ValueError
 
                 json_path = json_path.parent
-                print("\033[H\033[J", end="")
+                clear()
                 continue
             
             selected = indexed.get(number)
 
             if not selected:
-                print("\033[H\033[J", end="")
+                clear()
                 continue
 
             if selected.is_dir():
-                print("\033[H\033[J", end="")
+                clear()
                 json_path = selected
                 continue
 
             else:
-                print("\033[H\033[J", end="")
+                clear()
                 exc = open_history_json(relative_display, selected)
                 
                 if exc:
                     raise ValueError
                 elif not exc:
-                    print("\033[H\033[J", end="")
+                    clear()
                     continue
                 
             return selected, False
 
     except ValueError:
         if not json_path.exists():
-            print("\033[H\033[J", end="")
+            clear()
             print("No history found.")
 
             input("\nPress Enter to return...")
             return
         
-        print("\033[H\033[J", end="")
+        clear()
 
         return
