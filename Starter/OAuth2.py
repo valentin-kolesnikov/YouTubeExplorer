@@ -1,21 +1,15 @@
-from google_auth_oauthlib.flow import InstalledAppFlow
-
-from googleapiclient.discovery import build
-
-from google.oauth2.credentials import Credentials
-from google.auth.transport.requests import Request
-from google.auth.exceptions import TransportError
-
-from Patterns.check_connection import internet_available
-
+import sys
+from glob import glob
 from pathlib import Path
 
-from glob import glob
+from google.auth.exceptions import TransportError
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
 
-import sys
-
-
-
+from Patterns.check_connection import internet_available
+from Patterns.errors import WinError
 
 link = ["https://www.googleapis.com/auth/youtube.readonly",
         "https://www.googleapis.com/auth/youtube.force-ssl"]
@@ -81,7 +75,7 @@ def youtube_OAuth2():
             return {}, True
         
         
-        except TransportError:
+        except TransportError, WinError:
 
             internet_available()
 

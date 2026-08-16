@@ -1,20 +1,12 @@
-from ForthFunctions.collecting_info import collect_other_playlists, collect_playlist_details, collect_your_playlists
-
-from PlaylistExplorer_InputData.Videos_of_Playlists import videos_of_playlists
-
+from ForthFunctions.collecting_info import (
+    collect_other_playlists,
+    collect_playlist_details,
+    collect_your_playlists,
+)
 from ForthFunctions.output import output_playlists, save_docx
-
+from Patterns.save_history import clear, log, log_error
 from Patterns.Search_Engine import search_engine
-
-from Patterns.save_history import log, log_error, clear
-
-
-
-
-
-
-
-
+from PlaylistExplorer_InputData.Videos_of_Playlists import videos_of_playlists
 
 
 def collection_of_playlists(history, youtube, exc_OAuth2):
