@@ -4,6 +4,7 @@ from googleapiclient.errors import HttpError
 from httplib2.error import ServerNotFoundError
 
 from Patterns.check_connection import internet_available
+from Patterns.errors import PatternError
 
 
 def test_quota(youtube):
@@ -37,7 +38,6 @@ def test_quota(youtube):
             internet_available()
 
         except Exception as exc:
-
-            print(f"\n\u001b[31mException: {exc}\u001b[0m")
+            PatternError().pattern_exception(exc)
 
             return False

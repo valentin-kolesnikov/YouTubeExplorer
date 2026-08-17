@@ -31,8 +31,12 @@ def http_error(exc):
         case 404:
             issue = "Not Found. Probably, the requested video does not exist."
 
+        
+        case 429:
+            issue = "Too Many Requests. You exceeded your Search Queries quota."
+
         case _:
-            issue = "Unexpected HTTP error"
+            issue = exc.resp.reason
 
     print(f"\n\u001b[31mError {status}: {issue}\u001b[0m")
     
