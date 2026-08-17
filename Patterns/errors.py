@@ -7,9 +7,9 @@ class PatternError:
         if exc is None:
             return "Unexpected error occurred"
         
-        print(f"\033[31mUnexpected Error: {type(exc).__name__}: {exc}\033[0m")
+        print(f"\n\033[31m{type(exc).__name__}: {exc}\033[0m")
         input("\nPress Enter to return...")
-        return exc
+        return str(exc)
 
 
 def http_error(exc):
