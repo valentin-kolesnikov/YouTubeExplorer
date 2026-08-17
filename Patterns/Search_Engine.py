@@ -156,14 +156,10 @@ def search_engine(playlist_enabled=False):
     maximum = input("\nHow much do you want to receive resources?: ").strip()
 
     while True:
-        if maximum.isdigit():
+        if maximum.isdigit() and int(maximum) > 0:
             break
 
-        else:
-            maximum = input("\nEnter the number: ").strip()
-            
-    maximum = int(maximum)  
-    if maximum < 0:
-        maximum = 1
+        maximum = input("\nEnter the number greater than 0: ").strip()
 
-    return keywords, ageAfter, ageBefore, duration, maximum, which_order, dimension
+
+    return keywords, ageAfter, ageBefore, duration, int(maximum), which_order, dimension

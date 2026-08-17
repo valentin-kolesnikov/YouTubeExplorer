@@ -12,13 +12,12 @@ def launcherPlaylists(youtube, exc_OAuth2):
         
         question = input(
             "1. Collecting playlists\n" \
-            "2. Collecting videos from the playlist\n" \
-            "0. Go back to the start menu\n\n" \
-            "Choose the number: "
+            "2. Collecting videos from the playlist\n\n" \
+            "Choose the number (Press Enter to return): "
             ).strip()
         
         while True:
-            if question == "0":
+            if question == "":
                 log(history, "EXIT")
                 return
             

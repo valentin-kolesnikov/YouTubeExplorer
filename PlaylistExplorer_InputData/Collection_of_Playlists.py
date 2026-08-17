@@ -15,9 +15,8 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
 
     if not exc_OAuth2:
         print("2. Your playlists")
-    print("0. Go back to the previous menu")
 
-    search_playlist = input("\nChoose the number: ").strip()
+    search_playlist = input("\nChoose the number (Press Enter to return): ").strip()
 
     while True:
         if search_playlist == "1":
@@ -79,7 +78,7 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
             return
         
 
-        elif search_playlist == "0":
+        elif search_playlist == "":
             log(history, "BACK_TO_PREVIOUS_MENU")
             clear()
             return

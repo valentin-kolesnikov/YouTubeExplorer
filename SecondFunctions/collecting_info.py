@@ -4,45 +4,38 @@ from Patterns.errors import PatternError, WinError, http_error
 
 
 def collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, maximum, which_order, dimension):
-    while True:
+    video_ids = []
+    next_page_token = None
+
+    while len(video_ids) < maximum:
+        remaining_results = maximum - len(video_ids)
+        current_max_results = min(remaining_results, 50)
+
         try:
-            video_ids = []
-            next_page_token = None
+            request = youtube.search().list(
+                videoDimension=dimension,
+                q=keywords,
+                regionCode=region,
+                publishedBefore=ageBefore,
+                order=which_order,
+                publishedAfter=ageAfter,
+                videoDuration=duration,
+                part="snippet",
+                type="video",
+                maxResults=current_max_results,
+                pageToken=next_page_token
+            ).execute()
 
-            while True:
-                remaining_results = maximum - len(video_ids)
+            
+            for item in request["items"]:
+                video_ids.append(item["id"]["videoId"])
+            
+            next_page_token = request.get("nextPageToken")
 
-                if remaining_results <= 0:
-                    break
+            if not next_page_token or len(video_ids) >= maximum:
+                break
 
-                current_max_results = min(remaining_results, 50)
-
-                request = youtube.search().list(
-                    videoDimension=dimension,
-                    q=keywords,
-                    regionCode=region,
-                    publishedBefore=ageBefore,
-                    order=which_order,
-                    publishedAfter=ageAfter,
-                    videoDuration=duration,
-                    part="snippet",
-                    type="video",
-                    maxResults=current_max_results,
-                    pageToken=next_page_token
-                ).execute()
-
-                
-                for item in request["items"]:
-                    video_ids.append(item["id"]["videoId"])
-                
-                next_page_token = request.get("nextPageToken")
-
-                if not next_page_token or len(video_ids) >= maximum:
-                    break
-
-            return video_ids, False
-        
-        
+    
         except HttpError as exc:
             
             issue = http_error(exc)
@@ -59,3 +52,5 @@ def collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, m
         
         except Exception as exc:
             return PatternError().pattern_exception(exc), True
+    
+    return video_ids, False
