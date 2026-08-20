@@ -29,8 +29,9 @@ def output_channel_info(result, statrequests, get_answers, snistics, keywords=No
         title_video = item["snippet"]["title"]
         video_id = item["id"]
         published_at = item["snippet"]["publishedAt"]
-        dt = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
-        formatted_date = dt.strftime("%d.%m.%Y %H:%M:%S")
+        dt = datetime.fromisoformat(published_at)
+        UTC = dt.strftime("%z")
+        formatted_date = dt.strftime("%d.%m.%Y %H:%M:%S") + f" (UTC{UTC[:3]}:{UTC[3:]})"
 
         ch_likes = item["statistics"].get("likeCount", "No")
         ch_dislikes = result.get(video_id, {}).get("dislikes", "No")

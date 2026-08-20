@@ -38,7 +38,9 @@ class HistorySessions:
         }
     
     def now(self):
-        return datetime.now().astimezone().strftime("%H:%M:%S")
+        now = datetime.now().astimezone()
+        set = now.strftime("%z")
+        return now.strftime("%H:%M:%S") + f" (UTC{set[:3]}:{set[3:]})"
 
     def add_session(self, action, **data):
 

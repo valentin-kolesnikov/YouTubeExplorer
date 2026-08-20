@@ -15,8 +15,9 @@ def output_playlists(statrequest, keywords=None):
         title = item["snippet"]["title"]
         playlist_id = item["id"]
         published_at = item["snippet"]["publishedAt"]
-        dt = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
-        formatted_date = dt.strftime("%d.%m.%Y %H:%M:%S")
+        dt = datetime.fromisoformat(published_at)
+        UTC = dt.strftime("%z")
+        formatted_date = dt.strftime("%d.%m.%Y %H:%M:%S") + f" (UTC{UTC[:3]}:{UTC[3:]})"
 
         status = item["status"]["privacyStatus"]
         itemCount = item["contentDetails"]["itemCount"]

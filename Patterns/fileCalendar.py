@@ -1,9 +1,13 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 def age_calendar(dateBefore=False, dateAfter=False):
     plus_year = False
-    now = datetime.now().astimezone()
+    now = datetime.now(timezone.utc)
+    print("\n\033[38;5;208mUTC+00:00 time is used for the calendar.\n"
+          "Your entered dates will be interpreted as UTC+00:00.\n"
+          f"Current time: {now.strftime('%d.%m.%Y %H:%M:%S (UTC+00:00)')}\033[0m")
+    
     year = input("\nEnter the year: ").strip()
 
     if year.isdigit() and 2006 <= int(year) <= now.year:

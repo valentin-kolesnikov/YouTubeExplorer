@@ -23,8 +23,9 @@ def collect_channel_info(youtube, for_id, for_handle):
             statistics = request["items"][0]["statistics"]
 
             chpublished_at = snippet.get("publishedAt")
-            dt = datetime.fromisoformat(chpublished_at.replace("Z", "+00:00"))
-            chformatted_date = dt.strftime("%d.%m.%Y")
+            dt = datetime.fromisoformat(chpublished_at)
+            UTC = dt.strftime("%z")
+            chformatted_date = dt.strftime("%d.%m.%Y %H:%M:%S") + f" (UTC{UTC[:3]}:{UTC[3:]})"
             
 
             snistics = {

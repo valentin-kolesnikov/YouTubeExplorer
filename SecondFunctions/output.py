@@ -15,8 +15,9 @@ def output_videos(results, statrequest, keywords=None, one_video_info=False):
         title = item["snippet"]["title"]
         video_id = item["id"]
         published_at = item["snippet"]["publishedAt"]
-        dt = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
-        formatted_date = dt.strftime("%d.%m.%Y %H:%M:%S")
+        dt = datetime.fromisoformat(published_at)
+        UTC = dt.strftime("%z")
+        formatted_date = dt.strftime("%d.%m.%Y %H:%M:%S") + f" (UTC{UTC[:3]}:{UTC[3:]})"
 
         likes = item["statistics"].get("likeCount", "No")
         dislikes = results.get(video_id, {}).get("dislikes", "No")
