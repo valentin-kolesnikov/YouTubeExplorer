@@ -57,9 +57,9 @@ def number_comments(comments, channel_id, channel_title):
               f"\nComment: {comment["text"]}"
               f"\nAuthor: {comment["author"]}"
               f"\nLike Count: {comment["likeCount"]}"
-              f"\nPublished at: {top_formatted_date}"
-              f"\nUpdated at: {top_updated_formatted_date}"
-              f"\nComment ID: {comment["id"]}")
+              f"\nPublished at: {top_formatted_date}")
+        if comment["updated_at"] != comment["published_at"]:
+            print(f"Updated at: {top_updated_formatted_date}")
               
 
         for number_reply, reply in enumerate(comment["replies"], start=1):
@@ -78,9 +78,9 @@ def number_comments(comments, channel_id, channel_title):
                   f"\n\tReply: {reply["text"]}"
                   f"\n\tAuthor: {reply["author"]}"
                   f"\n\tLike Count: {reply["likeCount"]}"
-                  f"\n\tPublished at: {reply_formatted_date}"
-                  f"\n\tUpdated at: {reply_updated_formatted_date}"
-                  f"\n\tReply ID: {reply["id"]}")
+                  f"\n\tPublished at: {reply_formatted_date}")
+            if reply["updated_at"] != reply["published_at"]:
+                print(f"\n\tUpdated at: {reply_updated_formatted_date}")
 
 
 
@@ -156,9 +156,10 @@ def save_docx(comments, channel_id, channel_title, counts, amount_comments, vide
                                 f"\nComment: {comment['text']}"
                                 f"\nAuthor: {comment['author']}"
                                 f"\nLike Count: {comment['likeCount']}"
-                                f"\nPublished at: {top_formatted_date}"
-                                f"\nUpdated at: {top_updated_formatted_date}"
-                                f"\nComment ID: {comment['id']}")
+                                f"\nPublished at: {top_formatted_date}")
+            if comment["updated_at"] != comment["published_at"]:
+                doc.add_paragraph(f"\nUpdated at: {top_updated_formatted_date}")
+
             doc.add_paragraph("-" * 20)
 
             for index_reply, reply in enumerate(comment["replies"], start=1):
@@ -177,8 +178,10 @@ def save_docx(comments, channel_id, channel_title, counts, amount_comments, vide
                                     f"\n\tAuthor: {reply['author']}"
                                     f"\n\tLike Count: {reply['likeCount']}"
                                     f"\n\tPublished at: {reply_formatted_date}"
-                                    f"\n\tUpdated at: {reply_updated_formatted_date}"
-                                    f"\n\tReply ID: {reply['id']}")
+                                    f"\n\tUpdated at: {reply_updated_formatted_date}")
+                if reply["updated_at"] != reply["published_at"]:
+                    doc.add_paragraph(f"\n\tUpdated at: {reply_updated_formatted_date}")
+
                 doc.add_paragraph("-" * 20)
             
 
