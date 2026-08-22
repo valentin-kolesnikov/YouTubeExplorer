@@ -1,6 +1,6 @@
 from FirstFunctions.collecting_info import channel_name, collect_comments
 from FirstFunctions.output import count_keys, number_comments, save_docx
-from InputData.CommentExplorer import youtube_filters
+from InputData.CommentExplorer import needed_replies, youtube_filters
 from Patterns.check_connection import internet_available
 from Patterns.EnteringURL import youtube_id_finder
 from Patterns.HistoryLogs import HistorySessions
@@ -16,22 +16,26 @@ def launcherComments(youtube):
 
     which_order, search_terms = youtube_filters()
     log(history, "ENTER_FILTERS", search_terms=list(search_terms), which_order=which_order)
+    
+
+    choice_reply = needed_replies()
+    log(history, "ENTER_REPLIES", collect_replies=choice_reply)
 
 
     internet_available()
     log(history, "CHECK_INTERNET")
 
 
-    comments, exc = collect_comments(video_id, search_terms, which_order, youtube)
+    comments, exc = collect_comments(video_id, search_terms, which_order, youtube, choice_reply)
     if exc:
         log_error(history, comments, exc)
         clear()
         return
     
 
-    channel, exc = channel_name(video_id, youtube)
+    channel_id, channel_title, exc = channel_name(video_id, youtube)
     if exc:
-        log_error(history, channel, exc)
+        log_error(history, channel_id, channel_title, exc)
         clear()
         return
     
@@ -40,7 +44,7 @@ def launcherComments(youtube):
     clear()
     
 
-    amount_comments, counts = count_keys(comments, search_terms)
+    amount_comments, amount_replies, total_comments, counts = count_keys(comments, search_terms)
     if amount_comments == 0:
         log(history, "NO_COMMENTS")
         clear()
@@ -50,11 +54,11 @@ def launcherComments(youtube):
     
     
     
-    number_comments(comments, channel)
+    number_comments(comments, channel_id, channel_title)
     log(history, "OUTPUT_COMMENTS", status="SUCCESS", amount_comments=amount_comments, counts=counts)
 
 
-    choice, full_path = save_docx(comments, channel, counts, amount_comments, video_id)
+    choice, full_path = save_docx(comments, channel_id, channel_title, counts, amount_comments, video_id, amount_replies, total_comments)
     log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
     
 

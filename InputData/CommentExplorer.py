@@ -34,3 +34,17 @@ def youtube_filters():
 
 
     return which_order, search_terms
+
+
+def needed_replies():
+    choice = input("\nDo you want to collect all replies? (y/n): ").strip().lower()
+
+    while True:
+        if choice == "y":
+            return True
+
+        elif choice == "n":
+            return False
+
+        else:
+            choice = input("\nEnter again: ").strip().lower()
