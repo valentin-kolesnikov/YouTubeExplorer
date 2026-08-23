@@ -41,7 +41,7 @@ def number_comments(comments, channel_id, channel_title):
     print(f"Channel: {channel_title}")
     print(f"\nThe channel URL: https://www.youtube.com/channel/{channel_id}")
 
-    for number, comment in enumerate(comments, start=1):
+    for index, comment in enumerate(comments[:int(number)], start=1):
         
         top_published_at = comment["published_at"]
         dt1 = datetime.fromisoformat(top_published_at)
@@ -53,7 +53,8 @@ def number_comments(comments, channel_id, channel_title):
         UTC = dt.strftime("%z")
         top_updated_formatted_date = dt.strftime("%Y.%m.%d %H:%M:%S") + f" (UTC{UTC[:3]}:{UTC[3:]})"
 
-        print(f"\n{number}."
+
+        print(f"\n{index}."
               f"\nComment: {comment["text"]}"
               f"\nAuthor: {comment["author"]}"
               f"\nLike Count: {comment["likeCount"]}"
@@ -62,7 +63,7 @@ def number_comments(comments, channel_id, channel_title):
             print(f"Updated at: {top_updated_formatted_date}")
               
 
-        for number_reply, reply in enumerate(comment["replies"], start=1):
+        for index_reply, reply in enumerate(comment["replies"], start=1):
 
             reply_published_at = reply["published_at"]
             dt = datetime.fromisoformat(reply_published_at)
@@ -73,8 +74,9 @@ def number_comments(comments, channel_id, channel_title):
             dt = datetime.fromisoformat(reply_updated_at)
             UTC = dt.strftime("%z")
             reply_updated_formatted_date = dt.strftime("%Y.%m.%d %H:%M:%S") + f" (UTC{UTC[:3]}:{UTC[3:]})"
+            
 
-            print(f"\n\t{number}.{number_reply}."
+            print(f"\n\t{index}.{index_reply}."
                   f"\n\tReply: {reply["text"]}"
                   f"\n\tAuthor: {reply["author"]}"
                   f"\n\tLike Count: {reply["likeCount"]}"
@@ -82,6 +84,7 @@ def number_comments(comments, channel_id, channel_title):
             if reply["updated_at"] != reply["published_at"]:
                 print(f"\n\tUpdated at: {reply_updated_formatted_date}")
 
+    return number
 
 
 
@@ -91,7 +94,8 @@ def number_comments(comments, channel_id, channel_title):
 
 
 
-def save_docx(comments, channel_id, channel_title, counts, amount_comments, video_id, amount_replies, total_comments):
+
+def save_docx(comments, channel_id, channel_title, counts, amount_comments, video_id, amount_replies, total_comments, number):
     choice = input("\n\nDo you want to save the comments in a DOCX file? (y/n): ").strip().lower()
     while True:
         if choice in ["y", "n"]:
@@ -140,7 +144,7 @@ def save_docx(comments, channel_id, channel_title, counts, amount_comments, vide
                 doc.add_paragraph(f"{key_word}: {count}", style='List Bullet')
             
         doc.add_heading("Selected Comments:", level=1)
-        for index, comment in enumerate(comments, start=1):
+        for index, comment in enumerate(comments[:int(number)], start=1):
 
             top_published_at = comment["published_at"]
             dt1 = datetime.fromisoformat(top_published_at)

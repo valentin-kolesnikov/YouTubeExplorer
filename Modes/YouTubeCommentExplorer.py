@@ -54,13 +54,13 @@ def launcherComments(youtube):
     
     
     
-    number_comments(comments, channel_id, channel_title)
+    number = number_comments(comments, channel_id, channel_title)
     log(history, "OUTPUT_COMMENTS", status="SUCCESS", amount_comments=amount_comments, counts=counts)
 
 
-    choice, full_path = save_docx(comments, channel_id, channel_title, counts, amount_comments, video_id, amount_replies, total_comments)
+    choice, full_path = save_docx(comments, channel_id, channel_title, counts, amount_comments, video_id, amount_replies, total_comments, number)
     log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
     
 
-    input("\n\nPress Enter to return...")
+    input("\nPress Enter to return...")
     log(history, "EXIT")
