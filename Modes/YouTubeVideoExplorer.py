@@ -24,7 +24,7 @@ def launcherVideos(youtube):
     
     video_ids, exc = collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, maximum, which_order, dimension)
     if exc:
-        log_error(history, video_ids, exc)
+        log_error(history, exc, error=True)
         clear()
         return
 
@@ -32,7 +32,7 @@ def launcherVideos(youtube):
 
     statrequest, exc = collect_stats(youtube, video_ids)
     if exc:
-        log_error(history, statrequest, exc)
+        log_error(history, exc, error=True)
         clear()
         return
     

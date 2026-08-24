@@ -29,7 +29,7 @@ def launcherChannels(youtube):
 
     snistics, uploads_videos, exc = collect_channel_info(youtube, for_id, for_handle)
     if exc:
-        log_error(history, snistics, exc)
+        log_error(history, exc, error=True)
         clear()
         return
     
@@ -47,7 +47,7 @@ def launcherChannels(youtube):
 
         video_ids, exc = search_channel_videos(youtube, snistics, keywords, ageAfter, ageBefore, duration, maximum, which_order, dimension)
         if exc:
-            log_error(history, video_ids, exc)
+            log_error(history, exc, error=True)
             clear()
             return
         
@@ -57,7 +57,7 @@ def launcherChannels(youtube):
 
         statrequests, exc = collect_stats(youtube, video_ids)
         if exc:
-            log_error(history, statrequests, exc)
+            log_error(history, exc, error=True)
             clear()
             return
 
@@ -83,7 +83,7 @@ def launcherChannels(youtube):
 
         video_ids, exc = collect_popular_videos(youtube, uploads_videos)
         if exc:
-            log_error(history, video_ids, exc)
+            log_error(history, exc, error=True)
             clear()
             return
         
@@ -93,7 +93,7 @@ def launcherChannels(youtube):
 
         statrequests, exc = collect_stats(youtube, video_ids)
         if exc:
-            log_error(history, statrequests, exc)
+            log_error(history, exc, error=True)
             clear()
             return
         

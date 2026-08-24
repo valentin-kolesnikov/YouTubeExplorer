@@ -16,23 +16,23 @@ def collect_stats(youtube, video_ids):
                 ).execute()
 
                 statrequest.extend(statrequest_videos["items"])
-
-            return {"items": statrequest}, False
+            
         
         
         except HttpError as exc:
-                    
-            issue = http_error(exc)
-            
-            return issue, True
-        
+            error = http_error(exc)
+            break
         
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            error = "OSError occurred"
+            break
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), True
+            error = PatternError().pattern_exception(exc)
+            break
+
+    return {"items": statrequest}, error

@@ -16,7 +16,7 @@ def videos_of_playlists(history, youtube):
 
     video_ids, exc = collect_videos_of_playlist(youtube, playlist_URL)
     if exc:
-        log_error(history, video_ids, exc)
+        log_error(history, exc, error=True)
         clear()
         return
     
@@ -24,7 +24,7 @@ def videos_of_playlists(history, youtube):
 
     statrequest, exc = collect_stats(youtube, video_ids)
     if exc:
-        log_error(history, statrequest, exc)
+        log_error(history, exc, error=True)
         clear()
         return
     

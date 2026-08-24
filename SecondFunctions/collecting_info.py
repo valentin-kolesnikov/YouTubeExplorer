@@ -37,10 +37,8 @@ def collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, m
 
     
         except HttpError as exc:
-            
-            issue = http_error(exc)
-            
-            return issue, True
+            error = http_error(exc)
+            break
         
         
         except OSError as exc:
@@ -48,9 +46,11 @@ def collect_searches(youtube, keywords, region, ageAfter, ageBefore, duration, m
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            error = "OSError occurred"
+            break
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), True
+            error = PatternError().pattern_exception(exc)
+            break
     
-    return video_ids, False
+    return video_ids, error

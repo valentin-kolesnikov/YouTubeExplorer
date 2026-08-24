@@ -23,7 +23,7 @@ def launcherInfo(youtube):
     
     statrequest, exc = collect_stats(youtube, [video_id])
     if exc:
-        log_error(history, statrequest, exc)
+        log_error(history, exc, error=True)
         clear()
 
         return

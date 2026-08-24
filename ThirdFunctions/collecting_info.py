@@ -40,16 +40,11 @@ def collect_channel_info(youtube, for_id, for_handle):
             }
 
             uploads_videos = request["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
-            
-
-            return snistics, uploads_videos, False
         
 
         except HttpError as exc:
-
-            issue = http_error(exc)
-
-            return issue, {}, True
+            error = http_error(exc)
+            break
         
         
         except OSError as exc:
@@ -57,12 +52,13 @@ def collect_channel_info(youtube, for_id, for_handle):
             if WinError(exc):
                 continue
 
-            return "OSError occurred", {}, True
+            error = "OSError occurred"
         
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), {}, True
-    
+           error = PatternError().pattern_exception(exc)
+        
+    return snistics, uploads_videos, error
 
     
     
@@ -102,16 +98,11 @@ def search_channel_videos(youtube, snistics, keywords, ageAfter, ageBefore, dura
 
                 if not next_page_token or len(video_ids) >= maximum:
                     break
-
-
-            return video_ids, False
         
 
         except HttpError as exc:
-            
-            issue = http_error(exc)
-            
-            return issue, True
+            error = http_error(exc)
+            break
         
 
         except OSError as exc:
@@ -119,8 +110,10 @@ def search_channel_videos(youtube, snistics, keywords, ageAfter, ageBefore, dura
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            error = "OSError occurred"
 
+        
+    return video_ids, error
     
 
 def collect_popular_videos(youtube, uploads_videos):
@@ -136,16 +129,12 @@ def collect_popular_videos(youtube, uploads_videos):
 
             for item in collection["items"]:
                 video_ids.append(item["contentDetails"]["videoId"])
-
-
-            return video_ids, False
+            
 
 
         except HttpError as exc:
-
-            issue = http_error(exc)
-
-            return issue, True
+            error = http_error(exc)
+            break
         
 
         except OSError as exc:
@@ -153,7 +142,10 @@ def collect_popular_videos(youtube, uploads_videos):
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            error = "OSError occurred"
+            break
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), True
+            error = PatternError().pattern_exception(exc)
+
+    return video_ids, error

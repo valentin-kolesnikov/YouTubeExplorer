@@ -30,14 +30,14 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
 
             playlist_ids, exc = collect_other_playlists(youtube, keywords, ageAfter, ageBefore, maximum, which_order)
             if exc:
-                log_error(history, playlist_ids, exc)
+                log_error(history, exc, error=True)
                 clear()
                 return
             
             
             statrequest, exc = collect_playlist_details(youtube, playlist_ids)
             if exc:
-                log_error(history, statrequest, exc)
+                log_error(history, exc, error=True)
                 clear()
                 return
             
@@ -61,7 +61,7 @@ def collection_of_playlists(history, youtube, exc_OAuth2):
 
             statrequest, exc = collect_your_playlists(youtube)
             if exc:
-                log_error(history, statrequest, exc)
+                log_error(history, exc, error=True)
                 clear()
                 return
 

@@ -34,22 +34,23 @@ def collect_other_playlists(youtube, keywords, ageAfter, ageBefore, maximum, whi
 
 
         except HttpError as exc:
-        
-            issue = http_error(exc)
-
-            return issue, True
+            error = http_error(exc)
+            break
         
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            error = "OSError occurred"
+            break
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), True
+            error = PatternError().pattern_exception(exc)
+            break
+
         
-    return playlist_ids, False
+    return playlist_ids, error
     
 
 
@@ -71,24 +72,25 @@ def collect_playlist_details(youtube, playlist_ids):
 
                 playlists.extend(statrequest["items"])
                 break
+
             
             except HttpError as exc:
-
-                issue = http_error(exc)
-
-                return issue, True
+                error = http_error(exc)
+                break
             
             except OSError as exc:
 
                 if WinError(exc):
                     continue
 
-                return "OSError occurred", True
+                error = "OSError occurred"
+                break
             
             except Exception as exc:
-                return PatternError().pattern_exception(exc), True
+                error = PatternError().pattern_exception(exc)
+                break
 
-    return {"items": playlists}, False
+    return {"items": playlists}, error
 
     
 
@@ -116,22 +118,24 @@ def collect_videos_of_playlist(youtube, playlist_URL):
                 break
 
         except HttpError as exc:
+            error = http_error(exc)
+            break
 
-            issue = http_error(exc)
-
-            return issue, True
         
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            error = "OSError occurred"
+            break
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), True
+            error = PatternError().pattern_exception(exc)
+            break
+        
     
-    return video_ids, False
+    return video_ids, error
 
 
 
@@ -158,20 +162,23 @@ def collect_your_playlists(youtube):
                 if not next_page_token:
                     break
 
-            return {"items": statrequest}, False
+           
 
         except HttpError as exc:
+            error = http_error(exc)
+            break
 
-            issue = http_error(exc)
-
-            return issue, True
         
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            error = "OSError occurred"
+            break
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), True
+            error = PatternError().pattern_exception(exc)
+            break
+
+    return {"items": statrequest}, error

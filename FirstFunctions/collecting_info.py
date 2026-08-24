@@ -13,28 +13,26 @@ def channel_name(video_id, youtube):
 
             items = name.get("items", [])
 
-            return items[0]["snippet"]["channelId"], items[0]["snippet"]["channelTitle"], False
-
-            
 
         except HttpError as exc:
-            
-            issue = http_error(exc)
+            error = http_error(exc)
+            break
 
-            return issue, True
-        
 
         except OSError as exc:
 
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            error = "OSError occurred"
+            break
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), True
-    
+            error = PatternError().pattern_exception(exc)
+            break
 
+    
+    return items[0]["snippet"]["channelId"], items[0]["snippet"]["channelTitle"], error
 
     
 def collect_comments(video_id, search_terms, which_order, youtube, choice_reply):
@@ -54,8 +52,14 @@ def collect_comments(video_id, search_terms, which_order, youtube, choice_reply)
                 pageToken=next_page_token
             ).execute()
 
-            for item in request["items"]:
+            next_page_token = request.get("nextPageToken")
 
+            if not next_page_token:
+                break
+
+
+            for item in request["items"]:
+                
                 top_comment = item["snippet"]["topLevelComment"]
                 snippet = top_comment["snippet"]
 
@@ -64,7 +68,7 @@ def collect_comments(video_id, search_terms, which_order, youtube, choice_reply)
 
                 if (not search_terms_lower 
                     or any(
-                        term in comment_text.lower() 
+                        term in comment_text.lower()
                         for term in search_terms_lower
                     )
                 ):
@@ -78,15 +82,11 @@ def collect_comments(video_id, search_terms, which_order, youtube, choice_reply)
                         "updated_at": snippet["updatedAt"],
                         "replies": []
                     })
-
-            next_page_token = request.get("nextPageToken")
-
-            if not next_page_token:
-                break
         
         
         except HttpError as exc:
-            return http_error(exc), True
+            error = http_error(exc)
+            break
         
         
         except OSError as exc:
@@ -94,26 +94,27 @@ def collect_comments(video_id, search_terms, which_order, youtube, choice_reply)
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            error = "OSError occurred"
+            break
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), True
+           error = PatternError().pattern_exception(exc)
+           break
+        
         
 
     for comment in comments:
                     
         if choice_reply:
-            replies, exc = collect_replies(youtube, comment["id"])
+            replies, error = collect_replies(youtube, comment["id"])
+            comment["replies"] = replies
 
-            if exc:
-                return replies, True
-
-            
-            comment["replies"] = replies    
-
+            if error:
+                break
 
             
-    return comments, False
+            
+    return comments, error
 
 
 
@@ -149,10 +150,10 @@ def collect_replies(youtube, comment_id):
             next_page_token = request_replies.get("nextPageToken")
 
             if not next_page_token:
-                return replies, False
+                return replies, None
 
         except HttpError as exc:
-            return http_error(exc), True
+            return replies, http_error(exc)
                 
                 
         except OSError as exc:
@@ -160,7 +161,7 @@ def collect_replies(youtube, comment_id):
             if WinError(exc):
                 continue
 
-            return "OSError occurred", True
+            return replies, "OSError occurred"
         
         except Exception as exc:
-            return PatternError().pattern_exception(exc), True
+            return replies, PatternError().pattern_exception(exc)
