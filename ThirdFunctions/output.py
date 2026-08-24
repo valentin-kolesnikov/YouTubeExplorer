@@ -8,13 +8,12 @@ from docx import Document
 def output_channel_info(result, statrequests, get_answers, snistics, keywords=None):
 
     print(f"Channel: {snistics["title"]}\n"
-          f"https://www.youtube.com/channel/{snistics["channelId"]}\n"
-          f"CustomUrl: {snistics["customUrl"]}\n"
-          f"{snistics["subscriberCount"]} subs; {snistics["videoCount"]} videos; {snistics["viewCount"]} views.\n"
+          f"Channel URL: https://www.youtube.com/channel/{snistics["channelId"]}\n"
+          f"Custom URL name: {snistics["customUrl"]}\n"
+          f"Subs: {snistics["subscriberCount"]} | Videos: {snistics["videoCount"]} | Views: {snistics["viewCount"]}\n"
           f"Registration date: {snistics["publishedAt"]}\n"
           f"\nDescription:\n=================================\n{snistics["description"]}\n=================================\n")
-    
-    print("-" * 50)
+
 
     if get_answers == "y":
         print(f"Your request: {keywords}\n")
@@ -50,9 +49,9 @@ def output_channel_info(result, statrequests, get_answers, snistics, keywords=No
 
         print(
             f"\n{number}.\n"
-            f"{title_video}\n"
-            f"Video Link: https://www.youtube.com/watch?v={video_id}\n"
-            f"{ch_views} views; {ch_likes} likes; {ch_dislikes} dislikes; {ch_comments} comments\n"
+            f"Title: {title_video}\n"
+            f"Video URL: https://www.youtube.com/watch?v={video_id}\n"
+            f"Views: {ch_views} | Likes: {ch_likes} | Dislikes: {ch_dislikes} | Comments: {ch_comments}\n"
             f"Date: {formatted_date}")
 
     return parsed_videos

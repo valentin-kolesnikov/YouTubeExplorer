@@ -108,5 +108,5 @@ def launcherSubtitles():
     log(history, "SAVE_DOCS", status="SUCCESS" if choice == "y" else "DECLINED", file_path=str(full_path) if choice == "y" else None)
 
 
-    input("\n\nPress Enter to return...")
+    input("\nPress Enter to return...")
     log(history, "EXIT")

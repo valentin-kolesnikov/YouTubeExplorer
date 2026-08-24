@@ -50,7 +50,7 @@ def output_videos(results, statrequest, keywords=None, one_video_info=False):
         print(
             f"Title: {title}\n"
             f"Video Link: https://www.youtube.com/watch?v={video_id}\n"
-            f"{views} views; {likes} likes; {dislikes} dislikes; {comments} comments\n"
+            f"Views: {views} | Likes: {likes} | Dislikes: {dislikes} | Comments: {comments}\n"
             f"Date: {formatted_date}\n"
             f"Channel: {channelName}\n"
             f"Channel URL: https://www.youtube.com/channel/{channelId}")
