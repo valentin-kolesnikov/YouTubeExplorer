@@ -1,13 +1,15 @@
 import sys
 from json import loads
 
+from Patterns.color_output import red, reset
+
 
 class PatternError:
     def pattern_exception(self, exc=None):
         if exc is None:
             return "Unexpected error occurred"
         
-        print(f"\n\033[31m{type(exc).__name__}: {exc}\033[0m")
+        print(f"\n{red}{type(exc).__name__}: {exc}{reset}")
         input("\nPress Enter to return...")
         return str(exc)
 
@@ -38,7 +40,7 @@ def http_error(exc):
         case _:
             issue = exc.resp.reason
 
-    print(f"\n\u001b[31mError {status}: {issue}\u001b[0m")
+    print(f"\n{red}Error {status}: {issue}{reset}")
     
 
     input("\nPress Enter to return...")
@@ -65,10 +67,9 @@ def WinError(exc):
         case _:
             issue = "Internet connection is probably unavailable."
 
-    print(f"\n\u001b[31m{issue}\u001b[0m")
+    print(f"\n{red}{issue}{reset}")
 
-
-    exit_continue = input("\n\u001b[31m1. Retry connection\n2. Exit\n\nYour choice:\u001b[0m").strip()
+    exit_continue = input(f"\n{red}1. Retry connection\n2. Exit\n\nYour choice: {reset}").strip()
     
     while True:
         if exit_continue == "1":
@@ -78,4 +79,4 @@ def WinError(exc):
             sys.exit(1)
 
         else:
-            exit_continue = input("\n\u001b[31mEnter again:\u001b[0m").strip()
+            exit_continue = input(f"\n{red}Enter again: {reset}").strip()
