@@ -25,10 +25,12 @@ dist/
 *.bin
 *.ini
 
-# My Files
+# My files
 *DT.py
 *.drawio
 *tempCodeRunnerFile.py
+
+# My folders
 Pictures/
 Keys/
 Comments_in_DOCX/
@@ -37,3 +39,4 @@ HistoryLogs/
 Videos_in_DOCX/
 Channels_in_DOCX/
 Playlists_in_DOCX/
+Wishes/
